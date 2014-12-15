@@ -1,0 +1,27 @@
+<template name="AdminPostList">
+	<ul>
+		<li><a href="/admin/page/{{type}}/{{_id}}">{{title}}</a></li>
+		<li>{{content}}</li>
+		<li>{{type}}</li>
+	</ul>
+</template>
+
+<template name="AdminPost">
+	<form class="update-post">
+		<input type="text" name="title" value="{{title}}" placeholder="Title" /><br>
+			{{errorMessage 'title'}}
+		<textarea name="content" placeholder="Content">{{content}}</textarea>
+			{{errorMessage 'content'}}
+		<button type="submit">Submit</button>
+	</form>
+
+	<ul>
+		<li>{{_id}}</li>
+		<li>{{title}}</li>
+		<li>{{content}}</li>
+		<li>{{createdAt}}</li>
+		<li>{{updatedAt}}</li>
+		<li>{{author}}</li>
+		<li><button class="delete">Delete</button></li>
+	</ul>
+</template>

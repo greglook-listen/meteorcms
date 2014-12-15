@@ -1,0 +1,52 @@
+<template name="Customers">
+	<form class="new-customer">
+		<input type="text" name="firstName" placeholder="First Name" /><br>
+			{{errorMessage 'firstName'}}
+		<input type="text" name="lastName" placeholder="Last Name" /><br>
+			{{errorMessage 'lastName'}}
+		<input type="text" name="phoneNumber" placeholder="Phone Number" /><br>
+			{{errorMessage 'phoneNumber'}}
+		<button type="submit">Submit</button>
+	</form>
+
+	<div class="container">
+		{{#each customers}}
+			{{> CustomerList}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="CustomerList">
+	<ul>
+		<li>{{#if ownCustomer}}Yes{{/if}}</li>
+		<li><a href="/customer/{{_id}}">{{_id}}</a></li>
+		<li>{{firstName}}</li>
+		<li>{{lastName}}</li>
+		<li>{{phoneNumber}}</li>
+		<li>{{createdAt}}</li>
+		<li>{{owner}}</li>
+	</ul>
+</template>
+
+<template name="Customer">
+	<form class="update-customer">
+		<input type="text" name="firstName" value="{{firstName}}" placeholder="First Name" /><br>
+		{{errorMessage 'firstName'}}
+		<input type="text" name="lastName" value="{{lastName}}" placeholder="Last Name" /><br>
+		{{errorMessage 'lastName'}}
+		<input type="text" name="phoneNumber" value="{{phoneNumber}}" placeholder="Phone Number" /><br>
+		{{errorMessage 'phoneNumber'}}
+		<button type="submit">Submit</button>
+	</form>
+
+	<ul>
+		<li>{{_id}}</li>
+		<li>{{firstName}}</li>
+		<li>{{lastName}}</li>
+		<li>{{phoneNumber}}</li>
+		<li>{{createdAt}}</li>
+		<li>{{updatedAt}}</li>
+		<li>{{owner}}</li>
+		<li><button class="delete">Delete</button></li>
+	</ul>
+</template>

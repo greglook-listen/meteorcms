@@ -1,0 +1,42 @@
+<template name="AdminPageType">
+	<form class="new-post">
+		<input type="text" name="title" placeholder="Title" /><br>
+			{{creationMessage 'title'}}
+		<textarea name="content" placeholder="Content"></textarea><br>
+			{{creationMessage 'content'}}
+		<button type="submit">Submit</button>
+	</form>
+
+	<form class="update-page">
+		<input type="text" name="type" value="{{type}}" placeholder="Type" /><br>
+			{{editMessage 'type'}}
+		<button type="submit">Submit</button>
+	</form>
+
+	<div class="container">
+		{{#each posts}}
+			{{> AdminPostList}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="AdminPage">
+	<form class="new-page">
+		<input type="text" name="type" placeholder="Type" /><br>
+			{{errorMessage 'type'}}
+		<button type="submit">Submit</button>
+	</form>
+
+	<div class="container">
+		{{#each pages}}
+			{{> AdminPageList}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="AdminPageList">
+	<ul>
+		<li><a href="/admin/page/{{_id}}">{{type}}</a></li>
+		<li>{{url}}</li>
+	</ul>
+</template>

@@ -1,0 +1,23 @@
+<template name="Main">
+	<header>
+		<h2>{{time}}</h2>
+		<div class="error-container">{{> Errors}}</div>
+
+		<ul>
+			<li><a href="/">Home</a></li>
+			{{#each pages}}
+				{{> PrettyPageList}}
+			{{/each}}
+			{{#if currentUser}}
+				<li><a href="{{pathFor 'dashboard'}}">Admin</a></li>
+				<li><a href="#" class="logout">Logout</a></li>
+			{{else}}
+				<li><a href="{{pathFor 'login'}}">Login</a></li>
+			{{/if}}
+		</ul>
+	</header>
+
+	<div class="container">
+		{{> yield}}
+	</div>
+</template>

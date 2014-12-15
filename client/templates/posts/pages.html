@@ -1,0 +1,11 @@
+<template name="PageType">
+	<div class="container">
+		{{#each posts}}
+			{{> PostList}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="PrettyPageList">
+	<li><a href="/{{url}}">{{type}}</a></li>
+</template>

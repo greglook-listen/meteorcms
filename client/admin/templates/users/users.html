@@ -1,0 +1,19 @@
+<template name="Users">
+	{{#each users}}
+		{{> User}}
+	{{/each}}
+</template>
+
+<template name="User">
+	<ul>
+		<li>{{_id}}</li>
+		<li>{{created}}</li>
+		<li>
+			<ul>
+				{{#each emails}}
+					<li>{{address}}</li>
+				{{/each}}
+			</ul>
+		</li>
+	</ul>
+</template>

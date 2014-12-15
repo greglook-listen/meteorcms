@@ -1,0 +1,13 @@
+<template name="Errors">
+	<div class="errors">
+		{{#each errors}}
+			{{> Error}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="Error">
+	<div class="error">
+		{{message}}
+	</div>
+</template>

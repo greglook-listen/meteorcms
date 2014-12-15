@@ -1,0 +1,21 @@
+<template name="Admin">
+	<header>
+		<h2>{{time}}</h2>
+		<div class="error-container">{{> Errors}}</div>
+
+		<ul>
+			<li><a href="/">Home</a></li>
+			{{#if currentUser}}
+				<li><a href="{{pathFor 'customers'}}">Customers</a></li>
+				<li><a href="{{pathFor 'users'}}">Users</a></li>
+				<li><a href="{{pathFor 'register'}}">Register</a></li>
+				<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+				<li><a href="#" class="logout">Logout</a></li>
+			{{/if}}
+		</ul>
+	</header>
+
+	<div class="container">
+		{{> yield}}
+	</div>
+</template>
