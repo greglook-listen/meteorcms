@@ -11,7 +11,7 @@ Meteor.publish 'customers', ->
 Meteor.publish 'users', ->
 	Users.find(
 		{
-			owner: @userId
+
 		}
 		{
 			sort: { createdAt: -1 }

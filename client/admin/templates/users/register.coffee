@@ -8,9 +8,15 @@ Template.Register.events
 
 		Accounts.createUser({ email: email, password: password}, (error) ->
 			if error
+				Session.set 'typeOfError', 'failure'
 				throwError error
 			else
-				throwError result
+				Session.set 'typeOfError', 'success'
+
+				$('#account-email').val('')
+				$('#account-password').val('')
+
+				throwError 'User successfully created'
 		)
 
 		return false

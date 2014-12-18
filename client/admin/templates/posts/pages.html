@@ -1,31 +1,19 @@
-<template name="AdminPageType">
-	<form class="new-post">
-		<input type="text" name="title" placeholder="Title" /><br>
-			{{creationMessage 'title'}}
-		<textarea name="content" placeholder="Content"></textarea><br>
-			{{creationMessage 'content'}}
-		<button type="submit">Submit</button>
-	</form>
-
-	<form class="update-page">
-		<input type="text" name="type" value="{{type}}" placeholder="Type" /><br>
-			{{editMessage 'type'}}
-		<button type="submit">Submit</button>
-	</form>
-
-	<div class="container">
-		{{#each posts}}
-			{{> AdminPostList}}
-		{{/each}}
-	</div>
-</template>
-
 <template name="AdminPage">
-	<form class="new-page">
-		<input type="text" name="type" placeholder="Type" /><br>
-			{{errorMessage 'type'}}
-		<button type="submit">Submit</button>
-	</form>
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Create Page</h3>
+			<form class="new-page">
+				<div class="form-box">
+					<input type="text" name="type" placeholder="Type" />
+						<small class="form-error">{{errorMessage 'type'}}</small>
+					<input type="text" name="url" placeholder="URL" />
+						<small class="form-error">{{errorMessage 'url'}}</small>
+					<input type="checkbox" name="activated" /> Active Page
+					<button type="submit" class="pull-right">Create Page</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
 	<div class="container">
 		{{#each pages}}
@@ -34,9 +22,72 @@
 	</div>
 </template>
 
+<template name="AdminPageType">
+	<div class="container">
+		<div class="medium-6 column">
+			<h3>Update Page</h3>
+			<div class="form-box">
+				<form class="update-page">
+					<input type="text" name="type" value="{{type}}" placeholder="Type" />
+						<small class="form-error">{{editMessage 'type'}}</small>
+					<input type="text" name="url" value="{{url}}" placeholder="URL" />
+						<small class="form-error">{{editMessage 'url'}}</small>
+					<input type="checkbox" name="updateUrl" /> Update Url
+					<input type="checkbox" name="activated" checked="{{activated}}" /> Active Page
+					<button type="submit" class="pull-right">Update Page</button>
+
+				</form>
+				<br><br>
+				{{#if deletedAt}}
+					<button class="restore">Restore</button>
+				{{else}}
+					<button class="delete">Delete</button>
+				{{/if}}
+			</div>
+		</div>
+
+		<div class="medium-6 column">
+			<h3>Create New Post</h3>
+			<form class="new-post">
+				<div class="form-box">
+					<input type="text" name="title" placeholder="Title" />
+						<small class="form-error">{{creationMessage 'title'}}</small>
+					<input type="text" name="url" placeholder="Url" />
+						<small class="form-error">{{creationMessage 'url'}}</small>
+					<textarea name="content" placeholder="Content"></textarea>
+						<small class="form-error">{{creationMessage 'content'}}</small>
+					<input type="checkbox" name="activated" /> Active Post
+					<button type="submit" class="pull-right">Create Post</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="container">
+		{{#each posts}}
+			{{> AdminPostList}}
+		{{/each}}
+	</div>
+
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Revisions</h3>
+		</div>
+	</div>
+	
+	{{#each revisions}}
+		<div class="container">
+			<div class="medium-12 column">
+				{{revision}}
+			</div>
+		</div>
+	{{/each}}
+</template>
+
 <template name="AdminPageList">
-	<ul>
-		<li><a href="/admin/page/{{_id}}">{{type}}</a></li>
-		<li>{{url}}</li>
-	</ul>
+	<div class="container record">
+		<div class="medium-3 column">{{_id}}</div>
+		<div class="medium-5 column title"><a href="/admin/page/{{_id}}">{{type}}</a></div>
+		<div class="medium-4 column">{{url}}</div>
+	</div>
 </template>

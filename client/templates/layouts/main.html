@@ -1,23 +1,35 @@
 <template name="Main">
-	<header>
-		<h2>{{time}}</h2>
-		<div class="error-container">{{> Errors}}</div>
-
-		<ul>
-			<li><a href="/">Home</a></li>
-			{{#each pages}}
-				{{> PrettyPageList}}
-			{{/each}}
-			{{#if currentUser}}
-				<li><a href="{{pathFor 'dashboard'}}">Admin</a></li>
-				<li><a href="#" class="logout">Logout</a></li>
-			{{else}}
-				<li><a href="{{pathFor 'login'}}">Login</a></li>
-			{{/if}}
-		</ul>
+	<header class="main-header">
+		<nav>
+			<ul>
+				<li><a href="/">CMS</a></li>
+				{{#if currentUser}}
+					<li><a href="{{pathFor 'dashboard'}}">Admin</a></li>
+				{{/if}}
+				<li class="has-children">
+					Pages
+					<ul>
+						{{#each pages}}
+							{{> PrettyPageList}}
+						{{/each}}
+					</ul>
+				</li>
+				{{#if currentUser}}
+					<li><a href="#" class="logout">Logout</a></li>
+				{{else}}
+					<li><a href="{{pathFor 'login'}}">Login</a></li>
+				{{/if}}
+			</ul>
+		</nav>
 	</header>
 
-	<div class="container">
+	<div class="error-container {{typeOfError}}">
+		<div class="container">
+			{{> Errors}}
+		</div>
+	</div>
+
+	<div class="container main-container">
 		{{> yield}}
 	</div>
 </template>

@@ -1,0 +1,28 @@
+.pull-right {
+	float: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+
+// show loader only if takes longer than 1s
+.load-with-transition-delay {
+	-webkit-animation: fade 1s;
+	-webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

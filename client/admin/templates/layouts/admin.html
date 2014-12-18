@@ -1,21 +1,31 @@
 <template name="Admin">
-	<header>
-		<h2>{{time}}</h2>
-		<div class="error-container">{{> Errors}}</div>
-
-		<ul>
-			<li><a href="/">Home</a></li>
-			{{#if currentUser}}
-				<li><a href="{{pathFor 'customers'}}">Customers</a></li>
-				<li><a href="{{pathFor 'users'}}">Users</a></li>
-				<li><a href="{{pathFor 'register'}}">Register</a></li>
-				<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+	<header class="admin-header">
+		<nav>
+			<ul>
+				<li><a href="/">CMS</a></li>
+				<li><a href="/admin">Admin</a></li>
+				<li class="has-children">
+					Manage
+					<ul>
+						{{#if currentUser}}
+							<li><a href="{{pathFor 'customers'}}">Customers</a></li>
+							<li><a href="{{pathFor 'register'}}">Create User</a></li>
+							<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+						{{/if}}
+					</ul>
+				</li>
 				<li><a href="#" class="logout">Logout</a></li>
-			{{/if}}
-		</ul>
+			</ul>
+		</nav>
 	</header>
 
-	<div class="container">
+	<div class="error-container {{typeOfError}}">
+		<div class="container">
+			{{> Errors}}
+		</div>
+	</div>
+
+	<div class="main-container">
 		{{> yield}}
 	</div>
 </template>

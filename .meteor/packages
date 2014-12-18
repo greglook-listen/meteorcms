@@ -9,3 +9,14 @@ coffeescript
 mrt:moment
 fourseven:scss
 accounts-password
+
+
+# potential packages
+
+# Render your app even before the DDP connection is live. - magic?
+# https://atmospherejs.com/meteorhacks/fast-render
+# meteorhacks:fast-render
+
+# Part of WebApp, needed for rendering correctly to search engines
+# https://atmospherejs.com/meteor/spiderable
+# spiderable

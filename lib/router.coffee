@@ -10,7 +10,7 @@ Router.configure
 	loadingTemplate: 'Loading'
 	notFoundTemplate: 'NotFound'
 	waitOn: ->
-			Meteor.subscribe 'pages'
+		Meteor.subscribe 'pages'
 
 Router.map ->
 
@@ -35,11 +35,6 @@ Router.map ->
 		path: 'admin/register'
 		name: 'register'
 		layoutTemplate: 'Admin'
-
-	@route 'Users',
-		path: 'admin/users'
-		name: 'users'
-		layoutTemplate: 'Admin'
 		waitOn: ->
 			Meteor.subscribe 'users'
 
@@ -56,6 +51,7 @@ Router.map ->
 		layoutTemplate: 'Admin'
 		data: ->
 			Customers.findOne(_id: @params._id)
+
 		waitOn: ->
 			Meteor.subscribe 'customers'
 
@@ -72,16 +68,18 @@ Router.map ->
 		layoutTemplate: 'Admin'
 		data: ->
 			Pages.findOne(_id: @params._id)
+			
 		waitOn: ->
 			Meteor.subscribe 'pages'
 			Meteor.subscribe 'posts'
 
 	@route 'AdminPost',
-		path: 'admin/page/:type/:id'
+		path: 'admin/page/:type/:_id'
 		name: 'admin-post'
 		layoutTemplate: 'Admin'
 		data: ->
-			Posts.findOne(type: @params.type, id: @params._id)
+			Posts.findOne(_id: @params._id, type: @params.type)
+			
 		waitOn: ->
 			Meteor.subscribe 'posts'
 
@@ -91,7 +89,12 @@ Router.map ->
 		path: '/:url'
 		name: 'page-type'
 		data: ->
-			Pages.findOne(url: @params.url)
+			data = Pages.findOne(url: @params.url)
+
+			unless data
+				Router.go 'home'
+			data
+
 		waitOn: ->
 			Meteor.subscribe 'pages'
 			Meteor.subscribe 'posts'
@@ -100,6 +103,11 @@ Router.map ->
 		path: '/:type/:url'
 		name: 'post'
 		data: ->
-			Posts.findOne(type: @params.type, url: @params.url)
+			data = Posts.findOne(type: @params.type, url: @params.url)
+
+			unless data
+				Router.go 'home'
+			data
+
 		waitOn: ->
 			Meteor.subscribe 'posts'

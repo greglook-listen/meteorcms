@@ -8,15 +8,16 @@ Template.Customer.events
 			if result
 				Router.go 'customers'
 			else
+				Session.set 'typeOfError', 'failure'
 				throwError 'Unable to delete customer'
 
-	'submit .update-customer': ->
+	'submit .update-customer': (event) ->
 
 		customer = {
 			id: @_id
-			firstName: $('.update-customer [name="firstName"]').val()
-			lastName: $('.update-customer [name="lastName"]').val()
-			phoneNumber: $('.update-customer [name="phoneNumber"]').val()
+			firstName: $(event.target).find('[name="firstName"]').val()
+			lastName: $(event.target).find('[name="lastName"]').val()
+			phoneNumber: $(event.target).find('[name="phoneNumber"]').val()
 		}
 
 		errors = validateCustomer(customer)
@@ -29,11 +30,17 @@ Template.Customer.events
 		Meteor.call 'updateCustomer', customer, (error, result) ->
 			
 			if error
+				Session.set 'typeOfError', 'failure'
 				throwError error.error
 			else
-				throwError result.message
+				if result.success
+					Session.set 'typeOfError', 'success'
+				else
+					Session.set 'typeOfError', 'failure'
 
-				console.log result
+				Session.set('customerEditErrors', {})
+
+				throwError result.message
 
 		return false
 

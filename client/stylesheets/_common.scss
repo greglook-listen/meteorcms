@@ -1,0 +1,27 @@
+.main-container {
+	padding: 40px 0;
+}
+
+.form-box {
+	@extend .clearfix;
+}
+
+.form-error {
+	color: $red;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.title {
+	text-transform: capitalize;
+}
+
+.delete {
+	margin-right: 10px;
+}
+
+.record {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid $lightestgrey;
+}

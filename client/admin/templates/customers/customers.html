@@ -1,13 +1,20 @@
 <template name="Customers">
-	<form class="new-customer">
-		<input type="text" name="firstName" placeholder="First Name" /><br>
-			{{errorMessage 'firstName'}}
-		<input type="text" name="lastName" placeholder="Last Name" /><br>
-			{{errorMessage 'lastName'}}
-		<input type="text" name="phoneNumber" placeholder="Phone Number" /><br>
-			{{errorMessage 'phoneNumber'}}
-		<button type="submit">Submit</button>
-	</form>
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Create Customer</h3>
+			<form class="new-customer">
+				<div class="form-box">
+					<input type="text" name="firstName" placeholder="First Name" />
+						<small class="form-error">{{errorMessage 'firstName'}}</small>
+					<input type="text" name="lastName" placeholder="Last Name" />
+						<small class="form-error">{{errorMessage 'lastName'}}</small>
+					<input type="text" name="phoneNumber" placeholder="Phone Number" />
+						<small class="form-error">{{errorMessage 'phoneNumber'}}</small>
+					<button type="submit" class="pull-right">Create Customer</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
 	<div class="container">
 		{{#each customers}}
@@ -17,36 +24,42 @@
 </template>
 
 <template name="CustomerList">
-	<ul>
-		<li>{{#if ownCustomer}}Yes{{/if}}</li>
-		<li><a href="/customer/{{_id}}">{{_id}}</a></li>
-		<li>{{firstName}}</li>
-		<li>{{lastName}}</li>
-		<li>{{phoneNumber}}</li>
-		<li>{{createdAt}}</li>
-		<li>{{owner}}</li>
-	</ul>
+	<div class="container record">
+		<div class="medium-2 column"><a href="/admin/customer/{{_id}}">{{_id}}</a></div>
+		<div class="medium-2 column">{{firstName}}</div>
+		<div class="medium-2 column">{{lastName}}</div>
+		<div class="medium-2 column">{{phoneNumber}}</div>
+		<div class="medium-2 column">{{createdAt}}</div>
+		<div class="medium-2 column">{{owner}}</div>
+	</div>
 </template>
 
 <template name="Customer">
-	<form class="update-customer">
-		<input type="text" name="firstName" value="{{firstName}}" placeholder="First Name" /><br>
-		{{errorMessage 'firstName'}}
-		<input type="text" name="lastName" value="{{lastName}}" placeholder="Last Name" /><br>
-		{{errorMessage 'lastName'}}
-		<input type="text" name="phoneNumber" value="{{phoneNumber}}" placeholder="Phone Number" /><br>
-		{{errorMessage 'phoneNumber'}}
-		<button type="submit">Submit</button>
-	</form>
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Update Customer</h3>
+			<div class="form-box">
+				<form class="update-customer">
+					<input type="text" name="firstName" value="{{firstName}}" placeholder="First Name" />
+						<small class="form-error">{{errorMessage 'firstName'}}</small>
+					<input type="text" name="lastName" value="{{lastName}}" placeholder="Last Name" />
+						<small class="form-error">{{errorMessage 'lastName'}}</small>
+					<input type="text" name="phoneNumber" value="{{phoneNumber}}" placeholder="Phone Number" />
+						<small class="form-error">{{errorMessage 'phoneNumber'}}</small>
+					<button type="submit" class="pull-right">Update Customer</button>
+				</form>
+				<br><br>
+				<button class="delete">Delete</button>
+			</div>
+		</div>
+	</div>
 
-	<ul>
-		<li>{{_id}}</li>
-		<li>{{firstName}}</li>
-		<li>{{lastName}}</li>
-		<li>{{phoneNumber}}</li>
-		<li>{{createdAt}}</li>
-		<li>{{updatedAt}}</li>
-		<li>{{owner}}</li>
-		<li><button class="delete">Delete</button></li>
-	</ul>
+	<div class="container record">
+		<div class="medium-2 column">{{_id}}</div>
+		<div class="medium-2 column">{{firstName}}</div>
+		<div class="medium-2 column">{{lastName}}</div>
+		<div class="medium-2 column">{{phoneNumber}}</div>
+		<div class="medium-2 column">{{createdAt}}</div>
+		<div class="medium-2 column">{{updatedAt}}</div>
+	</div>
 </template>

@@ -29,11 +29,19 @@ Template.Customers.events
 		Meteor.call 'createCustomer', customer, (error, result) ->
 				
 			if error
+				Session.set 'typeOfError', 'failure'
 				throwError error.error
 			else
-				throwError result.message
+				if result.success
+					Session.set 'typeOfError', 'success'
 
-				console.log result
+					$('.new-customer input').val('')
+				else
+					Session.set 'typeOfError', 'failure'
+
+				Session.set('customerCreationErrors', {})
+				
+				throwError result.message
 
 		return false
 

@@ -6,8 +6,10 @@ Template.Login.events
 
 		Meteor.loginWithPassword email, password, (error, result) ->
 			if error
+				Session.set 'typeOfError', 'failure'
 				throwError error
 			else
-				Router.go 'admin'
+				Session.set 'typeOfError', 'success'
+				Router.go 'dashboard'
 
 		return false

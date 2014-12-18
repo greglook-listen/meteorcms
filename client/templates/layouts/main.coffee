@@ -1,14 +1,15 @@
-Meteor.startup ->
-	Tracker.autorun ->
-		console.log Users.find().fetch()
-		console.log Customers.find().fetch()
-
 Template.Main.helpers
 	time: new moment().format('MMM D, YYYY')
 
+	typeOfError: ->
+		Session.get 'typeOfError'
+		
 	pages: ->
 		Pages.find(
-			{}
+			{
+				activated: true
+				deletedAt: null
+			}
 			{
 				sort: { createdAt: -1 }
 			}

@@ -1,0 +1,15 @@
+.error-container {
+	
+	&.failure {
+		background: $red;
+	}
+
+	&.success {
+		background: $success;
+	}
+
+	.error {
+		padding: 12px 0;
+		color: $white;
+	}
+}

@@ -7,6 +7,9 @@
 	unless post.content.length && Match.test(post.content, String)
 		errors.content = "Content is required"
 
+	unless post.url.length && Match.test(post.url, String)
+		errors.url = "Url is required"
+
 	errors
 
 @Posts = new Mongo.Collection "posts"

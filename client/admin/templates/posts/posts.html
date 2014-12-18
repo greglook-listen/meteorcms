@@ -1,27 +1,65 @@
 <template name="AdminPostList">
-	<ul>
-		<li><a href="/admin/page/{{type}}/{{_id}}">{{title}}</a></li>
-		<li>{{content}}</li>
-		<li>{{type}}</li>
-	</ul>
+	<div class="container record">
+		<div class="medium-3 column title"><a href="/admin/page/{{type}}/{{_id}}">{{title}}</a></div>
+		<div class="medium-3 column">{{type}}</div>
+		<div class="medium-6 column">{{content}}</div>
+	</div>
+
 </template>
 
 <template name="AdminPost">
-	<form class="update-post">
-		<input type="text" name="title" value="{{title}}" placeholder="Title" /><br>
-			{{errorMessage 'title'}}
-		<textarea name="content" placeholder="Content">{{content}}</textarea>
-			{{errorMessage 'content'}}
-		<button type="submit">Submit</button>
-	</form>
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Update Post</h3>
+			<div class="form-box">
+				<form class="update-post">
+					<input type="text" name="title" value="{{title}}" placeholder="Title" />
+						<small class="form-error">{{errorMessage 'title'}}</small>
+					<input type="text" name="url" value="{{url}}" placeholder="Url" />
+						<small class="form-error">{{errorMessage 'url'}}</small>
+					<textarea name="content" placeholder="Content">{{content}}</textarea>
+						<small class="form-error">{{errorMessage 'content'}}</small>
+					<input type="checkbox" name="updateUrl" /> Update Url
+					<input type="checkbox" name="activated" checked="{{activated}}" /> Active Post
+					<button type="submit" class="pull-right">Update Post</button>
+				</form>
+				<br><br>
+				{{#if deletedAt}}
+					<button class="restore">Restore</button>
+				{{else}}
+					<button class="delete">Delete</button>
+				{{/if}}
+			</div>
+		</div>
+	</div>
 
-	<ul>
-		<li>{{_id}}</li>
-		<li>{{title}}</li>
-		<li>{{content}}</li>
-		<li>{{createdAt}}</li>
-		<li>{{updatedAt}}</li>
-		<li>{{author}}</li>
-		<li><button class="delete">Delete</button></li>
-	</ul>
+	<div class="container record">
+		<div class="medium-3 column">{{_id}}</div>
+		<div class="medium-3 column title">{{title}}</div>
+		<div class="medium-2 column">{{createdAt}}</div>
+		<div class="medium-2 column">{{updatedAt}}</div>
+		<div class="medium-2 column">{{deletedAt}}</div>
+	</div>
+
+	<br><br>
+	<div class="container">
+		<div class="medium-12 column">
+			<div>Author: {{author}}</div>
+			<div>Content: {{content}}</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Revisions</h3>
+		</div>
+	</div>
+	
+	{{#each revisions}}
+		<div class="container">
+			<div class="medium-12 column">
+				{{revision}}
+			</div>
+		</div>
+	{{/each}}
 </template>

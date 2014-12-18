@@ -1,9 +1,16 @@
 <template name="Register">
-	<form class="register-form">
-		<div>
-			<input type="email" id="account-email" placeholder="Email" />
-			<input type="password" id="account-password" placeholder="Password" />
-			<input type="submit" id="create-account" value="Create an Account" />
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Register</h3>
+			<form class="register-form">
+				<div class="form-box">
+					<input type="email" id="account-email" placeholder="Email" />
+					<input type="password" id="account-password" placeholder="Password" />
+					<button type="submit" id="create-account" class="pull-right">Create Account</button>
+				</div>
+			</form>
 		</div>
-	</form>
+	</div>
+
+	{{> Users}}
 </template>

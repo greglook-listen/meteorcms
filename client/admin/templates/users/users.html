@@ -5,15 +5,15 @@
 </template>
 
 <template name="User">
-	<ul>
-		<li>{{_id}}</li>
-		<li>{{created}}</li>
-		<li>
-			<ul>
-				{{#each emails}}
-					<li>{{address}}</li>
-				{{/each}}
-			</ul>
-		</li>
-	</ul>
+
+	<div class="container record">
+		<div class="medium-4 column">{{_id}}</div>
+		<div class="medium-4 column">{{created}}</div>
+		<div class="medium-4 column">
+			{{#each emails}}
+				{{address}}
+			{{/each}}
+		</div>
+	</div>
+
 </template>
