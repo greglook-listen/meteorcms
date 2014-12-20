@@ -17,4 +17,19 @@
 	</ul>
 
 	{{content}}
+
+	<!-- {{renderField fields.field1}} -->
+
+	<ul>
+		{{#each fields.repeaterfield.value}}
+			<li>{{value}}</li>
+		{{/each}}
+	</ul>
+
+	<ul>
+		{{#each fields.repeatertwo.value}}
+			<li>{{value}}</li>
+		{{/each}}
+	</ul>
+	
 </template>

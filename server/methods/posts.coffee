@@ -1,6 +1,6 @@
 Meteor.methods
 	
-	createPost: (post) -> # post = { title, content, type, url }
+	createPost: (post) -> # post = { title, content, type, url, customFields }
 		result = {}
 
 		# validate logged in user
@@ -33,6 +33,7 @@ Meteor.methods
 							type: post.type
 							url: url
 							activated: post.activated
+							fields: post.customFields
 							createdAt: new Date()
 							updatedAt: new Date()
 							deletedAt: null
@@ -45,7 +46,7 @@ Meteor.methods
 
 		return result
 	
-	updatePost: (post) -> # post = { id, title, content, type, url, updateUrl }
+	updatePost: (post) -> # post = { id, title, content, type, url, updateUrl, customFields }
 		result = {}
 
 		# validate logged in user
@@ -83,6 +84,7 @@ Meteor.methods
 							content: post.content
 							url: url
 							activated: post.activated
+							fields: post.customFields
 							revisions: revisions
 							updatedAt: new Date()
 						}
@@ -91,6 +93,7 @@ Meteor.methods
 							title: post.title
 							content: post.content
 							activated: post.activated
+							fields: post.customFields
 							revisions: revisions
 							updatedAt: new Date()
 						}
@@ -144,6 +147,7 @@ Meteor.methods
 		content: serverPost.content
 		type: serverPost.type
 		url: serverPost.url
+		fields: serverPost.fields
 		createdAt: serverPost.createdAt
 		updatedAt: serverPost.updatedAt
 		deletedAt: serverPost.deletedAt

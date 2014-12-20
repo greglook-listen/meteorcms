@@ -1,4 +1,27 @@
 Template.AdminPost.helpers
+	fields: ->
+		customFields = @fields
+
+		fields = Fields.find({}, { sort: { createdAt: -1 } }).fetch()
+
+		fields.forEach (field) ->
+			if customFields.hasOwnProperty(field.slug)
+				field['value'] = customFields[field.slug].value
+
+			if field.type == 'String'
+				field.string = true
+
+			if field.type == 'Number'
+				field.number = true
+
+			if field.type == 'Textarea' || field.type == 'HTML'
+				field.textarea = true
+
+			if field.type == 'Repeater'
+				field.repeater = true
+
+		fields
+
 	errorMessage: (field) ->
 		Session.get('postEditErrors')[field]
 
@@ -31,7 +54,25 @@ Template.AdminPost.events
 			updateUrl: $(event.target).find('[name="updateUrl"]').prop('checked')
 			content: $(event.target).find('[name="content"]').val()
 			type: @type
+			customFields: {}
 		}
+
+		$(event.target).find('.custom-field').each ->
+			post.customFields[$(this).prop('name')] = {
+				type: $(this).data('type')
+				value: $(this).val()
+			}
+
+		$(event.target).find('.repeater-group').each ->
+			fields = []
+
+			$(this).find('.repeater-field input').each ->
+				fields.push { value: $(this).val() }
+
+			post.customFields[$(this).data('name')] = {
+				type: $(this).data('type')
+				value: fields
+			}
 
 		errors = validatePost(post)
 		
@@ -48,6 +89,8 @@ Template.AdminPost.events
 			else
 				if result.success
 					Session.set 'typeOfError', 'success'
+
+					$('.update-post').find('.appended').remove()
 				else
 					Session.set 'typeOfError', 'failure'
 

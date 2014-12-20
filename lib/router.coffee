@@ -55,6 +55,13 @@ Router.map ->
 		waitOn: ->
 			Meteor.subscribe 'customers'
 
+	@route 'AdminFields',
+		path: 'admin/fields'
+		name: 'admin-fields'
+		layoutTemplate: 'Admin'
+		waitOn: ->
+			Meteor.subscribe 'fields'
+
 	@route 'AdminPage',
 		path: 'admin/page'
 		name: 'admin-page'
@@ -72,6 +79,7 @@ Router.map ->
 		waitOn: ->
 			Meteor.subscribe 'pages'
 			Meteor.subscribe 'posts'
+			Meteor.subscribe 'fields'
 
 	@route 'AdminPost',
 		path: 'admin/page/:type/:_id'
@@ -82,6 +90,7 @@ Router.map ->
 			
 		waitOn: ->
 			Meteor.subscribe 'posts'
+			Meteor.subscribe 'fields'
 
 # ---- PUBLIC ROUTES ---- #
 
@@ -104,7 +113,7 @@ Router.map ->
 		name: 'post'
 		data: ->
 			data = Posts.findOne(type: @params.type, url: @params.url)
-
+			console.log data
 			unless data
 				Router.go 'home'
 			data

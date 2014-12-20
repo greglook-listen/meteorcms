@@ -9,6 +9,25 @@ Template.AdminPageType.helpers
 			}
 		)
 
+	fields: ->
+		fields = Fields.find({}, { sort: { createdAt: -1 } }).fetch()
+
+		fields.forEach (field) ->
+			
+			if field.type == 'String'
+				field.string = true
+
+			if field.type == 'Number'
+				field.number = true
+
+			if field.type == 'Textarea' || field.type == 'HTML'
+				field.textarea = true
+
+			if field.type == 'Repeater'
+				field.repeater = true
+				
+		fields
+
 	creationMessage: (field) ->
 		Session.get('postCreationErrors')[field]
 
@@ -24,7 +43,27 @@ Template.AdminPageType.events
 			content: $(event.target).find('[name="content"]').val()
 			activated: $(event.target).find('[name="activated"]').prop('checked')
 			type: @url
+			customFields: {}
 		}
+
+		$(event.target).find('.custom-field').each ->
+			post.customFields[$(this).prop('name')] = {
+				type: $(this).data('type')
+				value: $(this).val()
+			}
+
+		$(event.target).find('.repeater-group').each ->
+			console.log $(this).find('.repeater-field')
+
+			fields = []
+
+			$(this).find('.repeater-field input').each ->
+				fields.push { value: $(this).val() }
+
+			post.customFields[$(this).data('name')] = {
+				type: $(this).data('type')
+				value: fields
+			}
 
 		errors = validatePost(post)
 		
@@ -42,7 +81,7 @@ Template.AdminPageType.events
 				if result.success
 					Session.set 'typeOfError', 'success'
 
-					$('.new-post input').val('')
+					$('.new-post input, .new-post textarea').val('')
 				else
 					Session.set 'typeOfError', 'failure'
 

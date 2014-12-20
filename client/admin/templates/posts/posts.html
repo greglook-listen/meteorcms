@@ -13,15 +13,29 @@
 			<h3>Update Post</h3>
 			<div class="form-box">
 				<form class="update-post">
+					<h4>Title</h4>
 					<input type="text" name="title" value="{{title}}" placeholder="Title" />
 						<small class="form-error">{{errorMessage 'title'}}</small>
+
+					<h4>Url</h4>
 					<input type="text" name="url" value="{{url}}" placeholder="Url" />
 						<small class="form-error">{{errorMessage 'url'}}</small>
+
+					<h4>Content</h4>
 					<textarea name="content" placeholder="Content">{{content}}</textarea>
 						<small class="form-error">{{errorMessage 'content'}}</small>
+					
+					{{#each fields}}
+						{{> AdminPostFields}}
+					{{/each}}
+
+					<h4>Options</h4>
+
 					<input type="checkbox" name="updateUrl" /> Update Url
 					<input type="checkbox" name="activated" checked="{{activated}}" /> Active Post
+					
 					<button type="submit" class="pull-right">Update Post</button>
+
 				</form>
 				<br><br>
 				{{#if deletedAt}}
@@ -62,4 +76,31 @@
 			</div>
 		</div>
 	{{/each}}
+</template>
+
+<template name="AdminPostFields">
+	<h4>{{name}}</h4>
+	{{#if string}}
+		<input class="custom-field" data-type="{{type}}" type="text" name="{{slug}}" value="{{value}}" placeholder="{{name}}"/>
+	{{/if}}
+	{{#if number}}
+		<input class="custom-field" data-type="{{type}}" type="number" name="{{slug}}" value="{{value}}" placeholder="{{name}}"/>
+	{{/if}}
+	{{#if textarea}}
+		<textarea class="custom-field" data-type="{{type}}" name="{{slug}}" placeholder="{{name}}">{{value}}</textarea>
+	{{/if}}
+	{{#if repeater}}
+		<div class="repeater-group" data-type="{{type}}" data-name="{{slug}}">
+
+			<div class="repeater-fields">
+				{{#each value}}
+					<div class="repeater-field">
+						<input type="text" value="{{value}}" /><span class="repeater-remove">x</span>
+					</div>
+				{{/each}}
+			</div>
+
+			<span class="button add-field">Add Field</span>
+		</div>
+	{{/if}}
 </template>

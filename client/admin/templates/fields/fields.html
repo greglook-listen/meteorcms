@@ -1,0 +1,40 @@
+<template name="AdminFields">
+	<div class="container">
+		<div class="medium-12 column">
+			<h3>Create Field</h3>
+			<form class="new-field">
+				<div class="form-box">
+					<input type="text" name="fieldName" placeholder="Field Name" />
+						<small class="form-error">{{errorMessage 'fieldName'}}</small>
+					<select name="fieldType">
+						<option value="String">String</option>
+						<option value="Number">Number</option>
+						<option value="Textarea">Textarea</option>
+						<option value="HTML">HTML</option>
+						<option value="Repeater">Repeater</option>
+					</select>
+					
+					<button type="submit" class="pull-right">Create Field</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="container">
+		{{#each fields}}
+			{{> AdminFieldList}}
+		{{/each}}
+	</div>
+</template>
+
+
+<template name="AdminFieldList">
+	<div class="container record">
+		<div class="medium-2 column">{{_id}}</div>
+		<div class="medium-2 column">{{name}}</div>
+		<div class="medium-2 column">{{type}}</div>
+		<div class="medium-2 column">{{slug}}</div>
+		<div class="medium-2 column">{{string}}</div>
+		<div class="medium-2 column">{{number}}</div>
+	</div>
+</template>

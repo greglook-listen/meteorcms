@@ -37,3 +37,13 @@ Meteor.publish 'pages', ->
 			sort: { createdAt: -1 }
 		}
 	)
+
+Meteor.publish 'fields', ->
+	Fields.find(
+		{
+
+		}
+		{
+			sort: { createdAt: -1 }
+		}
+	)

@@ -50,12 +50,24 @@
 			<h3>Create New Post</h3>
 			<form class="new-post">
 				<div class="form-box">
+					<h4>Title</h4>
 					<input type="text" name="title" placeholder="Title" />
 						<small class="form-error">{{creationMessage 'title'}}</small>
+
+					<h4>Url</h4>
 					<input type="text" name="url" placeholder="Url" />
 						<small class="form-error">{{creationMessage 'url'}}</small>
+
+					<h4>Content</h4>
 					<textarea name="content" placeholder="Content"></textarea>
 						<small class="form-error">{{creationMessage 'content'}}</small>
+
+					{{#each fields}}
+						{{> AdminPostFields}}
+					{{/each}}
+
+					<h4>Options</h4>
+
 					<input type="checkbox" name="activated" /> Active Post
 					<button type="submit" class="pull-right">Create Post</button>
 				</div>
