@@ -1,12 +1,11 @@
 <template name="Dashboard">
-
-	<!-- <ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="{{pathFor 'customers'}}">Manage Customers</a></li>
-		<li><a href="{{pathFor 'users'}}">Manage Users</a></li>
-		<li><a href="{{pathFor 'register'}}">Create Accounts</a></li>
-		<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
-		<li><a href="#" class="logout">Logout</a></li>
-	</ul> -->
+	<div class="dashboard">
+		<ul>
+			<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+			<li><a href="{{pathFor 'admin-fields'}}">Manage Fields</a></li>
+			<li><a href="{{pathFor 'customers'}}">Manage Customers</a></li>
+			<li><a href="{{pathFor 'register'}}">Create Accounts</a></li>
+		</ul>
+	</div>
 
 </template>

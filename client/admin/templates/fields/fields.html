@@ -2,45 +2,65 @@
 	<div class="container">
 		<div class="medium-12 column">
 			<h3>Create Field</h3>
-			<form class="new-field">
-				<div class="form-box">
-					<input type="text" name="fieldName" placeholder="Field Name" />
-						<small class="form-error">{{errorMessage 'fieldName'}}</small>
-					<select name="fieldType">
-						<option value="String">String</option>
-						<option value="Number">Number</option>
-						<option value="Textarea">Textarea</option>
-						<option value="HTML">HTML</option>
-						<option value="Repeater">Repeater</option>
-					</select>
 
-					<select name="pageType">
-						{{#each types}}
-							<option value="{{url}}">{{type}}</option>
-						{{/each}}
-					</select>
-					
-					<button type="submit" class="pull-right">Create Field</button>
-				</div>
-			</form>
+			{{#if types}}
+				<form class="new-field">
+					<div class="form-box">
+
+						<h4>Field Name</h4>
+						<input type="text" name="fieldName" placeholder="Field Name" />
+							<small class="form-error">{{errorMessage 'fieldName'}}</small>
+
+						<h4>Field Type</h4>
+						<select name="fieldType">
+							<option value="String">String</option>
+							<option value="Number">Number</option>
+							<option value="Textarea">Textarea</option>
+							<option value="HTML">HTML</option>
+							<option value="Repeater">Repeater</option>
+						</select>
+
+						<h4>Page Type</h4>
+						<select name="pageType">
+							{{#each types}}
+								<option value="{{url}}">{{type}}</option>
+							{{/each}}
+						</select>
+						
+						<div class="form-buttons">
+							<button type="submit" class="pull-right">Create Field</button>
+						</div>
+					</div>
+				</form>
+			{{else}}
+				<h3 class="capitalize text-center">You need to create a page type before creating a field</h3>
+			{{/if}}
 		</div>
 	</div>
 
+	<hr>
+	
 	<div class="container">
+		<div class="container">
+			<div class="medium-3 column"><h4>Name</h4></div>
+			<div class="medium-3 column"><h4>Type</h4></div>
+			<div class="medium-3 column"><h4>Slug</h4></div>
+			<div class="medium-3 column"><h4>Page Type</h4></div>
+		</div>
+
 		{{#each fields}}
 			{{> AdminFieldList}}
 		{{/each}}
 	</div>
+
 </template>
 
 
 <template name="AdminFieldList">
 	<div class="container record">
-		<div class="medium-2 column">{{_id}}</div>
-		<div class="medium-2 column">{{name}}</div>
-		<div class="medium-2 column">{{type}}</div>
-		<div class="medium-2 column">{{slug}}</div>
-		<div class="medium-2 column">{{string}}</div>
-		<div class="medium-2 column">{{number}}</div>
+		<div class="medium-3 column">{{name}}</div>
+		<div class="medium-3 column">{{type}}</div>
+		<div class="medium-3 column">{{slug}}</div>
+		<div class="medium-3 column">{{pageType}}</div>
 	</div>
 </template>

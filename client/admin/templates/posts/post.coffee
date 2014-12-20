@@ -42,6 +42,8 @@ Template.AdminPost.events
 				Session.set 'typeOfError', 'failure'
 				throwError 'Unable to delete post'
 
+		return false
+
 	'click .restore': ->
 		Meteor.call 'restorePost', @_id, (error, result) ->
 			if result
@@ -51,6 +53,8 @@ Template.AdminPost.events
 				Session.set 'typeOfError', 'failure'
 				throwError 'Unable to restore post'
 
+		return false
+		
 	'submit .update-post': (event) ->
 		form = $(event.target)
 

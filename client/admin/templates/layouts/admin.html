@@ -1,32 +1,28 @@
 <template name="Admin">
-	<header class="admin-header">
-		<nav>
-			<ul>
-				<li><a href="/">CMS</a></li>
-				<li><a href="/admin">Admin</a></li>
-				<li class="has-children">
-					Manage
-					<ul>
-						{{#if currentUser}}
-							<li><a href="{{pathFor 'customers'}}">Customers</a></li>
-							<li><a href="{{pathFor 'register'}}">Create User</a></li>
-							<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
-							<li><a href="{{pathFor 'admin-fields'}}">Manage Fields</a></li>
-						{{/if}}
-					</ul>
-				</li>
-				<li><a href="#" class="logout">Logout</a></li>
-			</ul>
-		</nav>
-	</header>
-
-	<div class="error-container {{typeOfError}}">
-		<div class="container">
-			{{> Errors}}
+	<div class="admin">
+		<div class="main-container">
+			<span class="show-navigation"><i class="glyphicon glyphicon-list"></i></span>
+			<div class="left-navigation">
+				<a href="/" class="home-icon"><i class="glyphicon glyphicon-home"></i></a>
+				<span class="hide-navigation"><i class="glyphicon glyphicon-arrow-left"></i></span>
+				<ul>
+					{{#if currentUser}}
+						<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+						<li><a href="{{pathFor 'admin-fields'}}">Manage Fields</a></li>
+						<li><a href="{{pathFor 'customers'}}">Customers</a></li>
+						<li><a href="{{pathFor 'register'}}">Create User</a></li>
+						<li><a href="#" class="logout">Logout</a></li>
+					{{/if}}
+				</ul>
+			</div>
+			<div class="main-content">
+				<div class="error-container {{typeOfError}}">
+					<div class="container">
+						{{> Errors}}
+					</div>
+				</div>
+				{{> yield}}
+			</div>
 		</div>
-	</div>
-
-	<div class="main-container">
-		{{> yield}}
 	</div>
 </template>

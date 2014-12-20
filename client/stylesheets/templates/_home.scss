@@ -1,3 +1,30 @@
-body {
-	
+.admin {
+	.dashboard {
+		@extend .container;
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				width: 48%;
+				float: left;
+				margin: 0 1% 2%;
+
+				a {
+					border: 1px solid $lightestgrey;
+					display: block;
+					text-align: center;
+					padding: 50px 0;
+					text-decoration: none;
+					color: $black;
+					
+					&:hover {
+						background: $lightestgrey;
+					}
+				}
+			}
+		}
+	}
 }

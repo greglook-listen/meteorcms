@@ -1,0 +1,87 @@
+// .admin {
+// 	header {
+// 		position: relative;
+// 		z-index: 1;
+// 		background: $theme;
+// 		display: none;
+
+// 		@media (max-width: $small_upper) {
+// 			display: block;
+// 		}
+
+// 		nav {
+// 			@extend .container;
+
+// 			ul {
+// 				margin: 0;
+// 				padding: 0;
+// 				list-style: none;
+// 				width: 100%;
+
+// 				> li {
+// 					position: relative;
+// 					float: left;
+// 					width: 25%;
+
+// 					a {
+// 						display: block;
+// 						padding: 18px 8px;
+// 						cursor: pointer;
+// 						font-weight: 600;
+// 						color: $white;
+
+// 						&:hover {
+// 							text-decoration: none;
+// 						}
+// 					}
+
+// 					&.has-children {
+// 						display: block;
+// 						padding: 18px 8px;
+// 						cursor: pointer;
+// 						font-weight: 600;
+// 						color: $white;
+
+// 						ul {
+// 							position: absolute;
+// 							display: none;
+// 							top: 52px;
+// 							left: -8px;
+// 							width: 375px;
+// 							background: $theme;
+// 							border-top: 2px solid $white;
+
+// 							li {
+// 								text-align: left;
+// 								width: 100%;
+
+// 								a {
+// 									display: block;
+// 									padding-left: 16px;
+// 									cursor: pointer;
+// 									border-bottom: 2px solid $white;
+
+// 									&:hover {
+// 										background: $theme_dark;
+// 									}
+// 								}
+// 							}
+
+// 							li:last-child {
+// 								a {
+// 									border-bottom: 0;
+// 								}
+// 							}
+// 						}
+
+// 						&:hover {
+// 							ul {
+// 								display: block;
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }

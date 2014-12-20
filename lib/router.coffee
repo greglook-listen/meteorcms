@@ -126,10 +126,8 @@ Router.map ->
 				if @data()
 					data = @data()
 
-					if data.type == 'cool-kids'
-						@render('CoolKids')
-					else if data.type == 'bad-kids'
-						@render('BadKids')
+					if data.type == 'example'
+						@render('Example')
 					else
 						@render()
 				else

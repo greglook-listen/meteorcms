@@ -10,3 +10,12 @@ Template.Admin.events
 			Router.go 'login'
 
 		false
+
+	'click .show-navigation': ->
+		$('.left-navigation, .main-content').addClass('active')
+
+	'click .hide-navigation': ->
+		$('.left-navigation, .main-content').removeClass('active')
+
+	'click .left-navigation ul li a': ->
+		$('.left-navigation, .main-content').removeClass('active')

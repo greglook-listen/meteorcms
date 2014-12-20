@@ -1,9 +1,12 @@
 @import 'variables.scss';
 @import './templates/bootstrapping.scss';
+@import './admin/templates/bootstrapping.scss';
 @import './templates/grid.scss';
+@import './admin/templates/glyphicons.scss';
 @import './templates/utilities.scss';
-@import 'common.scss';
+@import './admin/common.scss';
+@import './admin/header.scss';
 @import 'header.scss';
 @import './templates/home.scss';
-@import './templates/error.scss';
-@import './templates/fields.scss';
+@import './admin/templates/error.scss';
+@import './admin/templates/fields.scss';

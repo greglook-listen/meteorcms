@@ -9,12 +9,21 @@
 					<input type="text" name="url" placeholder="URL" />
 						<small class="form-error">{{errorMessage 'url'}}</small>
 					<input type="checkbox" name="activated" /> Active Page
-					<button type="submit" class="pull-right">Create Page</button>
+					
+					<div class="form-buttons">
+						<button type="submit" class="pull-right">Create Page</button>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 
+	<hr>
+
+	<div class="container">
+		<div class="medium-6 column title"><h4>Page Type</h4></div>
+		<div class="medium-6 column"><h4>Url</h4></div>
+	</div>
 	<div class="container">
 		{{#each pages}}
 			{{> AdminPageList}}
@@ -24,29 +33,37 @@
 
 <template name="AdminPageType">
 	<div class="container">
-		<div class="medium-6 column">
+		<div class="medium-12 column">
 			<h3>Update Page</h3>
 			<div class="form-box">
 				<form class="update-page">
+					<h4>Page Type</h4>
 					<input type="text" name="type" value="{{type}}" placeholder="Type" />
 						<small class="form-error">{{editMessage 'type'}}</small>
+
+					<h4>Url</h4>
 					<input type="text" name="url" value="{{url}}" placeholder="URL" />
 						<small class="form-error">{{editMessage 'url'}}</small>
 					<input type="checkbox" name="updateUrl" /> Update Url
 					<input type="checkbox" name="activated" checked="{{activated}}" /> Active Page
-					<button type="submit" class="pull-right">Update Page</button>
-
+					
+					<div class="form-buttons">
+						<button type="submit" class="pull-right">Update Page</button>
+						{{#if deletedAt}}
+							<button class="restore">Restore</button>
+						{{else}}
+							<button class="delete">Delete</button>
+						{{/if}}
+					</div>
 				</form>
-				<br><br>
-				{{#if deletedAt}}
-					<button class="restore">Restore</button>
-				{{else}}
-					<button class="delete">Delete</button>
-				{{/if}}
 			</div>
 		</div>
+	</div>
 
-		<div class="medium-6 column">
+	<hr>
+
+	<div class="container">
+		<div class="medium-12 column">
 			<h3>Create New Post</h3>
 			<form class="new-post">
 				<div class="form-box">
@@ -69,11 +86,16 @@
 					<h4>Options</h4>
 
 					<input type="checkbox" name="activated" /> Active Post
-					<button type="submit" class="pull-right">Create Post</button>
+					
+					<div class="form-buttons">
+						<button type="submit" class="pull-right">Create Post</button>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
+
+	<hr>
 
 	<div class="container">
 		{{#each posts}}
@@ -81,9 +103,10 @@
 		{{/each}}
 	</div>
 
+	<br><br><br>
 	<div class="container">
 		<div class="medium-12 column">
-			<h3>Revisions</h3>
+			<h3>Page Revisions</h3>
 		</div>
 	</div>
 	
@@ -94,12 +117,12 @@
 			</div>
 		</div>
 	{{/each}}
+
 </template>
 
 <template name="AdminPageList">
 	<div class="container record">
-		<div class="medium-3 column">{{_id}}</div>
-		<div class="medium-5 column title"><a href="/admin/page/{{_id}}">{{type}}</a></div>
-		<div class="medium-4 column">{{url}}</div>
+		<div class="medium-6 column title"><a href="/admin/page/{{_id}}">{{type}}</a></div>
+		<div class="medium-6 column">{{url}}</div>
 	</div>
 </template>

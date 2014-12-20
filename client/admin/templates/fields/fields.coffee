@@ -9,11 +9,13 @@ Template.AdminFields.helpers
 
 	types: ->
 		Pages.find(
-			{}
+			{
+				deletedAt: null
+			}
 			{
 				sort: { createdAt: -1 }
 			}
-		)
+		).fetch()
 
 	errorMessage: (field) ->
 		Session.get('errorMessage')[field]

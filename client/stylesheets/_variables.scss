@@ -10,6 +10,7 @@ $theme_dark: darken($theme, 10%);
 $white: #fff;
 $barelynotwhite: #f2f2f2;
 $black: #636466;
+$dark_black: darken($black, 10%);
 
 // grey
 $lightestgrey: #e8ebee;
@@ -19,3 +20,9 @@ $darkgrey: #a3a3a3;
 
 $red: #ed1c26;
 $success: #28c617;
+
+$medium: 40.063em;
+$portrait_lower: 768px;
+$portrait_upper: 1023px;
+$medium_large: 45em;
+$small_upper: 640px;

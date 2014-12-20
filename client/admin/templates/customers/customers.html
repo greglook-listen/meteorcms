@@ -10,7 +10,10 @@
 						<small class="form-error">{{errorMessage 'lastName'}}</small>
 					<input type="text" name="phoneNumber" placeholder="Phone Number" />
 						<small class="form-error">{{errorMessage 'phoneNumber'}}</small>
-					<button type="submit" class="pull-right">Create Customer</button>
+					
+					<div class="form-buttons">
+						<button type="submit" class="pull-right">Create Customer</button>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -24,13 +27,17 @@
 </template>
 
 <template name="CustomerList">
+	<div class="container">
+			<div class="medium-3 column"><h4>First Name</h4></div>
+			<div class="medium-3 column"><h4>Last Name</h4></div>
+			<div class="medium-3 column"><h4>Phone Number</h4></div>
+			<div class="medium-3 column"><h4>Created At</h4></div>
+		</div>
 	<div class="container record">
-		<div class="medium-2 column"><a href="/admin/customer/{{_id}}">{{_id}}</a></div>
-		<div class="medium-2 column">{{firstName}}</div>
-		<div class="medium-2 column">{{lastName}}</div>
-		<div class="medium-2 column">{{phoneNumber}}</div>
-		<div class="medium-2 column">{{createdAt}}</div>
-		<div class="medium-2 column">{{owner}}</div>
+		<div class="medium-3 column">{{firstName}}</div>
+		<div class="medium-3 column">{{lastName}}</div>
+		<div class="medium-3 column">{{phoneNumber}}</div>
+		<div class="medium-3 column">{{createdAt}}</div>
 	</div>
 </template>
 
@@ -46,7 +53,10 @@
 						<small class="form-error">{{errorMessage 'lastName'}}</small>
 					<input type="text" name="phoneNumber" value="{{phoneNumber}}" placeholder="Phone Number" />
 						<small class="form-error">{{errorMessage 'phoneNumber'}}</small>
-					<button type="submit" class="pull-right">Update Customer</button>
+					
+					<div class="form-buttons">
+						<button type="submit" class="pull-right">Update Customer</button>
+					</div>
 				</form>
 				<br><br>
 				<button class="delete">Delete</button>

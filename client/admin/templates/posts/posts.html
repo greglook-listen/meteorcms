@@ -1,10 +1,14 @@
 <template name="AdminPostList">
+	<div class="container">
+		<div class="medium-3 column title"><h4>Title</h4></div>
+		<div class="medium-3 column"><h4>Page Type</h4></div>
+		<div class="medium-6 column"><h4>Content</h4></div>
+	</div>
 	<div class="container record">
 		<div class="medium-3 column title"><a href="/admin/page/{{type}}/{{_id}}">{{title}}</a></div>
 		<div class="medium-3 column">{{type}}</div>
 		<div class="medium-6 column">{{content}}</div>
 	</div>
-
 </template>
 
 <template name="AdminPost">
@@ -34,35 +38,36 @@
 					<input type="checkbox" name="updateUrl" /> Update Url
 					<input type="checkbox" name="activated" checked="{{activated}}" /> Active Post
 					
-					<button type="submit" class="pull-right">Update Post</button>
+					<div class="form-buttons">
+						<button type="submit" class="pull-right">Update Post</button>
+						{{#if deletedAt}}
+							<button class="restore">Restore</button>
+						{{else}}
+							<button class="delete">Delete</button>
+						{{/if}}
+					</div>
 
 				</form>
-				<br><br>
-				{{#if deletedAt}}
-					<button class="restore">Restore</button>
-				{{else}}
-					<button class="delete">Delete</button>
-				{{/if}}
 			</div>
 		</div>
 	</div>
 
-	<div class="container record">
-		<div class="medium-3 column">{{_id}}</div>
-		<div class="medium-3 column title">{{title}}</div>
-		<div class="medium-2 column">{{createdAt}}</div>
-		<div class="medium-2 column">{{updatedAt}}</div>
-		<div class="medium-2 column">{{deletedAt}}</div>
-	</div>
+	<hr>
 
-	<br><br>
 	<div class="container">
-		<div class="medium-12 column">
-			<div>Author: {{author}}</div>
-			<div>Content: {{content}}</div>
-		</div>
+		<div class="medium-3 column title"><h4>Title</h4></div>
+		<div class="medium-3 column"><h4>Content</h4></div>
+		<div class="medium-3 column"><h4>Page Type</h4></div>
+		<div class="medium-3 column"><h4>Url</h4></div>
+	</div>
+	<div class="container record">
+		<div class="medium-3 column title">{{title}}</div>
+		<div class="medium-3 column">{{content}}</div>
+		<div class="medium-3 column">{{type}}</div>
+		<div class="medium-3 column">{{url}}</div>
 	</div>
 
+	<br><br><br>
 	<div class="container">
 		<div class="medium-12 column">
 			<h3>Revisions</h3>

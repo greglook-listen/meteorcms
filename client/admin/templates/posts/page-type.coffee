@@ -113,6 +113,8 @@ Template.AdminPageType.events
 				Session.set 'typeOfError', 'failure'
 				throwError 'Unable to delete page'
 
+		return false
+
 	'click .restore': ->
 		Meteor.call 'restorePage', @_id, (error, result) ->
 			if result
@@ -122,6 +124,8 @@ Template.AdminPageType.events
 				Session.set 'typeOfError', 'failure'
 				throwError 'Unable to restore page'
 
+		return false
+		
 	'submit .update-page': (event) ->
 		form = $(event.target)
 		

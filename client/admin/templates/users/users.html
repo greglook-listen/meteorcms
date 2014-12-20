@@ -1,19 +1,21 @@
 <template name="Users">
+	<div class="container">
+		<div class="medium-6 column"><h4>Email</h4></div>
+		<div class="medium-6 column"><h4>Created At</h4></div>
+	</div>
 	{{#each users}}
 		{{> User}}
 	{{/each}}
 </template>
 
 <template name="User">
-
 	<div class="container record">
-		<div class="medium-4 column">{{_id}}</div>
-		<div class="medium-4 column">{{created}}</div>
-		<div class="medium-4 column">
+		<div class="medium-6 column">
 			{{#each emails}}
 				{{address}}
 			{{/each}}
 		</div>
+		<div class="medium-6 column">{{created}}</div>
 	</div>
 
 </template>

@@ -18,42 +18,37 @@
 
 	{{content}}
 
-	<!-- {{renderField fields.field1}} -->
+</template>
 
-	<!-- <ul>
-		{{#each fields.repeaterfield.value}}
+<template name="Example">
+	<h3>This is an example template</h3>
+
+	<p>This template is located at templates/posts/posts.html</p>
+
+	<p>The router checks the post's data type (i.e., the slug of its parent page).  In this case, the data type of this post is "example".  The router says if data.type == 'example', render "Example" template, else render default "Post" template</p>
+
+	<h3>This is an example of the string field</h3>
+
+	{{renderField fields.examplefield}}
+
+	<h3>This is an example of the repeater field</h3>
+	
+	<ul>
+		{{#each fields.examplerepeater.value}}
 			<li>{{value}}</li>
 		{{/each}}
-	</ul> -->
-
-</template>
-
-<template name="CoolKids">
-	<ul>
-		<li>{{_id}}</li>
-		<li>{{title}}</li>
-		<li>{{createdAt}}</li>
-		<li>{{updatedAt}}</li>
-		<li>{{author}}</li>
 	</ul>
 
+
+	<h3>Post Details</h3>
+	<div class="container">
+		<div class="medium-3 column">{{title}}</div>
+		<div class="medium-3 column">{{createdAt}}</div>
+		<div class="medium-3 column">{{updatedAt}}</div>
+		<div class="medium-3 column">{{author}}</div>
+	</div>
+
+	<h3>Post Content</h3>
 	{{content}}
-
-	{{renderField fields.fieldone}}
-	
-</template>
-
-<template name="BadKids">
-	<ul>
-		<li>{{_id}}</li>
-		<li>{{title}}</li>
-		<li>{{createdAt}}</li>
-		<li>{{updatedAt}}</li>
-		<li>{{author}}</li>
-	</ul>
-
-	{{content}}
-
-	{{renderField fields.fieldtwo}}
 	
 </template>
