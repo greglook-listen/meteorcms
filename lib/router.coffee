@@ -124,11 +124,11 @@ Router.map ->
 		action: ->
 			if @ready()
 				if @data()
-					data = @data()
-
-					if data.type == 'example'
+					# this is used with the fixture data
+					if @data().type == 'example'
 						@render('Example')
 					else
 						@render()
+
 				else
 					Router.go 'home'
