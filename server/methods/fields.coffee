@@ -1,6 +1,6 @@
 Meteor.methods
 	
-	createField: (field) -> # field = { name, type }
+	createField: (field) -> # field = { name, type, pageType }
 		result = {}
 
 		# validate logged in user
@@ -12,7 +12,7 @@ Meteor.methods
 			# validate data
 			errors = validateField(field)
 			
-			if (errors.name || errors.type)
+			if (errors.name || errors.type || errors.pageType)
 				result.success = false
 				result.message = "Validation Error"
 			else
@@ -33,6 +33,7 @@ Meteor.methods
 					{
 						name: field.name
 						type: field.type
+						pageType: field.pageType
 						slug: slug
 						createdAt: new Date()
 						updatedAt: new Date()

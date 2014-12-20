@@ -12,12 +12,13 @@ Template.Customer.events
 				throwError 'Unable to delete customer'
 
 	'submit .update-customer': (event) ->
+		form = $(event.target)
 
 		customer = {
 			id: @_id
-			firstName: $(event.target).find('[name="firstName"]').val()
-			lastName: $(event.target).find('[name="lastName"]').val()
-			phoneNumber: $(event.target).find('[name="phoneNumber"]').val()
+			firstName: form.find('[name="firstName"]').val()
+			lastName: form.find('[name="lastName"]').val()
+			phoneNumber: form.find('[name="phoneNumber"]').val()
 		}
 
 		errors = validateCustomer(customer)

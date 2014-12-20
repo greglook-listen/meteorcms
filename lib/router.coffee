@@ -51,9 +51,11 @@ Router.map ->
 		layoutTemplate: 'Admin'
 		data: ->
 			Customers.findOne(_id: @params._id)
-
 		waitOn: ->
 			Meteor.subscribe 'customers'
+		action: ->
+			if @ready()
+				if @data() then @render() else Router.go 'dashboard'
 
 	@route 'AdminFields',
 		path: 'admin/fields'
@@ -61,6 +63,7 @@ Router.map ->
 		layoutTemplate: 'Admin'
 		waitOn: ->
 			Meteor.subscribe 'fields'
+			Meteor.subscribe 'pages'
 
 	@route 'AdminPage',
 		path: 'admin/page'
@@ -80,6 +83,9 @@ Router.map ->
 			Meteor.subscribe 'pages'
 			Meteor.subscribe 'posts'
 			Meteor.subscribe 'fields'
+		action: ->
+			if @ready()
+				if @data() then @render() else Router.go 'dashboard'
 
 	@route 'AdminPost',
 		path: 'admin/page/:type/:_id'
@@ -87,10 +93,12 @@ Router.map ->
 		layoutTemplate: 'Admin'
 		data: ->
 			Posts.findOne(_id: @params._id, type: @params.type)
-			
 		waitOn: ->
 			Meteor.subscribe 'posts'
 			Meteor.subscribe 'fields'
+		action: ->
+			if @ready()
+				if @data() then @render() else Router.go 'dashboard'
 
 # ---- PUBLIC ROUTES ---- #
 
@@ -99,24 +107,30 @@ Router.map ->
 		name: 'page-type'
 		data: ->
 			data = Pages.findOne(url: @params.url)
-
-			unless data
-				Router.go 'home'
-			data
-
 		waitOn: ->
 			Meteor.subscribe 'pages'
 			Meteor.subscribe 'posts'
+		action: ->
+			if @ready()
+				if @data() then @render() else Router.go 'home'
 
 	@route 'Post',
 		path: '/:type/:url'
 		name: 'post'
 		data: ->
-			data = Posts.findOne(type: @params.type, url: @params.url)
-			console.log data
-			unless data
-				Router.go 'home'
-			data
-
+			Posts.findOne(type: @params.type, url: @params.url)
 		waitOn: ->
 			Meteor.subscribe 'posts'
+		action: ->
+			if @ready()
+				if @data()
+					data = @data()
+
+					if data.type == 'cool-kids'
+						@render('CoolKids')
+					else if data.type == 'bad-kids'
+						@render('BadKids')
+					else
+						@render()
+				else
+					Router.go 'home'

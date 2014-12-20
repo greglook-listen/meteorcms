@@ -12,11 +12,12 @@ Template.Customers.helpers
 
 Template.Customers.events
 	'submit .new-customer': (event) ->
+		form = $(event.target)
 		
 		customer = {
-			firstName: $('.new-customer [name="firstName"]').val()
-			lastName: $('.new-customer [name="lastName"]').val()
-			phoneNumber: $('.new-customer [name="phoneNumber"]').val()
+			firstName: form.find('[name="firstName"]').val()
+			lastName: form.find('[name="lastName"]').val()
+			phoneNumber: form.find('[name="phoneNumber"]').val()
 		}
 
 		errors = validateCustomer(customer)

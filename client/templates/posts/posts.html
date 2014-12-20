@@ -20,16 +20,40 @@
 
 	<!-- {{renderField fields.field1}} -->
 
-	<ul>
+	<!-- <ul>
 		{{#each fields.repeaterfield.value}}
 			<li>{{value}}</li>
 		{{/each}}
+	</ul> -->
+
+</template>
+
+<template name="CoolKids">
+	<ul>
+		<li>{{_id}}</li>
+		<li>{{title}}</li>
+		<li>{{createdAt}}</li>
+		<li>{{updatedAt}}</li>
+		<li>{{author}}</li>
 	</ul>
 
+	{{content}}
+
+	{{renderField fields.fieldone}}
+	
+</template>
+
+<template name="BadKids">
 	<ul>
-		{{#each fields.repeatertwo.value}}
-			<li>{{value}}</li>
-		{{/each}}
+		<li>{{_id}}</li>
+		<li>{{title}}</li>
+		<li>{{createdAt}}</li>
+		<li>{{updatedAt}}</li>
+		<li>{{author}}</li>
 	</ul>
+
+	{{content}}
+
+	{{renderField fields.fieldtwo}}
 	
 </template>

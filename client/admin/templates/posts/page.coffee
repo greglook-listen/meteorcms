@@ -12,11 +12,12 @@ Template.AdminPage.helpers
 
 Template.AdminPage.events
 	'submit .new-page': (event) ->
-		
+		form = $(event.target)
+
 		page = {
-			type: $(event.target).find('[name="type"]').val()
-			url: $(event.target).find('[name="url"]').val()
-			activated: $(event.target).find('[name="activated"]').prop('checked')
+			type: form.find('[name="type"]').val()
+			url: form.find('[name="url"]').val()
+			activated: form.find('[name="activated"]').prop('checked')
 		}
 
 		errors = validatePage(page)

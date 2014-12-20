@@ -13,6 +13,12 @@
 						<option value="HTML">HTML</option>
 						<option value="Repeater">Repeater</option>
 					</select>
+
+					<select name="pageType">
+						{{#each types}}
+							<option value="{{url}}">{{type}}</option>
+						{{/each}}
+					</select>
 					
 					<button type="submit" class="pull-right">Create Field</button>
 				</div>

@@ -1,4 +1,6 @@
 header {
+	position: relative;
+	z-index: 1;
 	background: $theme;
 
 	nav {
@@ -56,6 +58,12 @@ header {
 								&:hover {
 									background: $theme_dark;
 								}
+							}
+						}
+
+						li:last-child {
+							a {
+								border-bottom: 0;
 							}
 						}
 					}

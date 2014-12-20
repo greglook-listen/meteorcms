@@ -10,7 +10,14 @@ Template.AdminPageType.helpers
 		)
 
 	fields: ->
-		fields = Fields.find({}, { sort: { createdAt: -1 } }).fetch()
+		fields = Fields.find(
+			{
+				pageType: @url
+			}
+			{
+				sort: { createdAt: -1 }
+			}
+		).fetch()
 
 		fields.forEach (field) ->
 			
@@ -36,23 +43,24 @@ Template.AdminPageType.helpers
 
 Template.AdminPageType.events
 	'submit .new-post': (event) ->
-		
+		form = $(event.target)
+
 		post = {
-			title: $(event.target).find('[name="title"]').val()
-			url: $(event.target).find('[name="url"]').val()
-			content: $(event.target).find('[name="content"]').val()
-			activated: $(event.target).find('[name="activated"]').prop('checked')
+			title: form.find('[name="title"]').val()
+			url: form.find('[name="url"]').val()
+			content: form.find('[name="content"]').val()
+			activated: form.find('[name="activated"]').prop('checked')
 			type: @url
 			customFields: {}
 		}
 
-		$(event.target).find('.custom-field').each ->
+		form.find('.custom-field').each ->
 			post.customFields[$(this).prop('name')] = {
 				type: $(this).data('type')
 				value: $(this).val()
 			}
 
-		$(event.target).find('.repeater-group').each ->
+		form.find('.repeater-group').each ->
 			console.log $(this).find('.repeater-field')
 
 			fields = []
@@ -115,13 +123,14 @@ Template.AdminPageType.events
 				throwError 'Unable to restore page'
 
 	'submit .update-page': (event) ->
-
+		form = $(event.target)
+		
 		page = {
 			id: @_id
-			type: $(event.target).find('[name="type"]').val()
-			url: $(event.target).find('[name="url"]').val()
-			activated: $(event.target).find('[name="activated"]').prop('checked')
-			updateUrl: $(event.target).find('[name="updateUrl"]').prop('checked')
+			type: form.find('[name="type"]').val()
+			url: form.find('[name="url"]').val()
+			activated: form.find('[name="activated"]').prop('checked')
+			updateUrl: form.find('[name="updateUrl"]').prop('checked')
 		}
 
 		errors = validatePage(page)

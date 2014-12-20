@@ -3,10 +3,12 @@ Template.Register.helpers()
 Template.Register.events
 	'submit .register-form': (event) ->
 
-		email = $('#account-email').val()
-		password = $('#account-password').val()
+		user = {
+			email: $('#account-email').val()
+			password: $('#account-password').val()
+		}
 
-		Accounts.createUser({ email: email, password: password}, (error) ->
+		Accounts.createUser(user, (error) ->
 			if error
 				Session.set 'typeOfError', 'failure'
 				throwError error

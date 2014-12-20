@@ -7,20 +7,30 @@ Template.AdminFields.helpers
 			}
 		)
 
+	types: ->
+		Pages.find(
+			{}
+			{
+				sort: { createdAt: -1 }
+			}
+		)
+
 	errorMessage: (field) ->
 		Session.get('errorMessage')[field]
 
 Template.AdminFields.events
 	'submit .new-field': (event) ->
-		
+		form = $(event.target)
+
 		field = {
-			name: $(event.target).find('[name="fieldName"]').val()
-			type: $(event.target).find('[name="fieldType"]').val()
+			name: form.find('[name="fieldName"]').val()
+			type: form.find('[name="fieldType"]').val()
+			pageType: form.find('[name="pageType"]').val()
 		}
 
 		errors = validateField(field)
 		
-		if (errors.name || errors.type)
+		if (errors.name || errors.type || errors.pageType)
 			Session.set 'errorMessage', errors
 
 			return false

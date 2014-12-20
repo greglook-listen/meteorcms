@@ -2,7 +2,14 @@ Template.AdminPost.helpers
 	fields: ->
 		customFields = @fields
 
-		fields = Fields.find({}, { sort: { createdAt: -1 } }).fetch()
+		fields = Fields.find(
+			{
+				pageType: @type
+			}
+			{
+				sort: { createdAt: -1 }
+			}
+		).fetch()
 
 		fields.forEach (field) ->
 			if customFields.hasOwnProperty(field.slug)
@@ -45,25 +52,26 @@ Template.AdminPost.events
 				throwError 'Unable to restore post'
 
 	'submit .update-post': (event) ->
+		form = $(event.target)
 
 		post = {
 			id: @_id
-			title: $(event.target).find('[name="title"]').val()
-			url: $(event.target).find('[name="url"]').val()
-			activated: $(event.target).find('[name="activated"]').prop('checked')
-			updateUrl: $(event.target).find('[name="updateUrl"]').prop('checked')
-			content: $(event.target).find('[name="content"]').val()
+			title: form.find('[name="title"]').val()
+			url: form.find('[name="url"]').val()
+			activated: form.find('[name="activated"]').prop('checked')
+			updateUrl: form.find('[name="updateUrl"]').prop('checked')
+			content: form.find('[name="content"]').val()
 			type: @type
 			customFields: {}
 		}
 
-		$(event.target).find('.custom-field').each ->
+		form.find('.custom-field').each ->
 			post.customFields[$(this).prop('name')] = {
 				type: $(this).data('type')
 				value: $(this).val()
 			}
 
-		$(event.target).find('.repeater-group').each ->
+		form.find('.repeater-group').each ->
 			fields = []
 
 			$(this).find('.repeater-field input').each ->
