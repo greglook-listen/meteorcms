@@ -12,4 +12,5 @@ On initial run, this will create fixture data for users, pages, posts, and field
 ## Default User Credentials
 
 email: beans@fake.com
+
 password: abcde123
