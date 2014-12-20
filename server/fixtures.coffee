@@ -10,6 +10,14 @@
 
 # Delete this file or it will create the fixture data again
 
+if Users.find().count() == 0
+	user = {
+		email: 'beans@fake.com'
+		password: 'abcde123'
+	}
+
+	Accounts.createUser(user)
+
 if Pages.find().count() == 0
 	Pages.insert(
 		{
