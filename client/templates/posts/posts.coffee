@@ -1,6 +1,9 @@
 UI.registerHelper 'renderField', (field) ->
 	
-	if field.type == 'HTML'
-		Spacebars.SafeString field.value
+	if field
+		if field.type == 'HTML'
+			Spacebars.SafeString field.value
+		else
+			field.value
 	else
-		field.value
+		console.log 'You have a reference to a custom field in this template that is undefined'

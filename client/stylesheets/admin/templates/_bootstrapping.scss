@@ -26,6 +26,12 @@
     text-transform: uppercase;
   }
 
+  .record-button {
+    @extend .button;
+    margin: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.50625rem;
+  }
 
   input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
     -webkit-appearance: none;

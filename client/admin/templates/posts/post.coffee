@@ -1,10 +1,11 @@
 Template.AdminPost.helpers
-	fields: ->
+	postFields: ->
 		customFields = @fields
 
 		fields = Fields.find(
 			{
 				pageType: @type
+				location: 'post'
 			}
 			{
 				sort: { createdAt: -1 }

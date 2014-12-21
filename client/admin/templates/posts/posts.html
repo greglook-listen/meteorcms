@@ -29,7 +29,7 @@
 					<textarea name="content" placeholder="Content">{{content}}</textarea>
 						<small class="form-error">{{errorMessage 'content'}}</small>
 					
-					{{#each fields}}
+					{{#each postFields}}
 						{{> AdminPostFields}}
 					{{/each}}
 
@@ -100,7 +100,7 @@
 			<div class="repeater-fields">
 				{{#each value}}
 					<div class="repeater-field">
-						<input type="text" value="{{value}}" /><span class="repeater-remove">x</span>
+						<input type="text" value="{{value}}" /><span class="repeater-remove"><i class="glyphicon glyphicon-remove"></i></span>
 					</div>
 				{{/each}}
 			</div>

@@ -31,6 +31,7 @@ Meteor.methods
 							type: page.type
 							url: url
 							activated: page.activated
+							fields: {}
 							createdAt: new Date()
 							updatedAt: new Date()
 							deletedAt: null
@@ -43,7 +44,7 @@ Meteor.methods
 
 		return result
 
-	updatePage: (page) -> # page = { id, type, url, updateUrl }
+	updatePage: (page) -> # page = { id, type, url, updateUrl, customFields }
 		result = {}
 
 		# validate logged in user
@@ -94,6 +95,7 @@ Meteor.methods
 							type: page.type
 							url: url
 							activated: page.activated
+							fields: page.customFields
 							revisions: revisions
 							updatedAt: new Date()
 						}
@@ -101,6 +103,7 @@ Meteor.methods
 						data = {
 							type: page.type
 							activated: page.activated
+							fields: page.customFields
 							revisions: revisions
 							updatedAt: new Date()
 						}
@@ -164,6 +167,7 @@ Meteor.methods
 	revision = {
 		type: serverPage.type
 		url: serverPage.url
+		fields: serverPage.fields
 		createdAt: serverPage.createdAt
 		updatedAt: serverPage.updatedAt
 		deletedAt: serverPage.deletedAt

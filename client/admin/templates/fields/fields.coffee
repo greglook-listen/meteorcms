@@ -28,11 +28,12 @@ Template.AdminFields.events
 			name: form.find('[name="fieldName"]').val()
 			type: form.find('[name="fieldType"]').val()
 			pageType: form.find('[name="pageType"]').val()
+			location: form.find('[name="location"]').val()
 		}
 
 		errors = validateField(field)
 		
-		if (errors.name || errors.type || errors.pageType)
+		if (errors.name || errors.type || errors.pageType || errors.location)
 			Session.set 'errorMessage', errors
 
 			return false
@@ -53,6 +54,19 @@ Template.AdminFields.events
 				Session.set('errorMessage', {})
 				
 				throwError result.message
+
+		return false
+
+	'click .delete': (event) ->
+		id = $(event.target).data('id')
+
+		Meteor.call 'deleteField', id, (error, result) ->
+			if result
+				Session.set 'typeOfError', 'success'
+				throwError 'Successfully deleted field'
+			else
+				Session.set 'typeOfError', 'failure'
+				throwError 'Unable to delete field'
 
 		return false
 

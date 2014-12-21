@@ -30,6 +30,11 @@ Router.map ->
 		path: 'admin'
 		name: 'dashboard'
 		layoutTemplate: 'Admin'
+		waitOn: ->
+			Meteor.subscribe 'pages'
+			Meteor.subscribe 'posts'
+			Meteor.subscribe 'users'
+			Meteor.subscribe 'fields'
 
 	@route 'Register',
 		path: 'admin/register'
