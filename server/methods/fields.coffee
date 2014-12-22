@@ -64,6 +64,7 @@ Meteor.methods
 
 	existingField = Fields.findOne(slug: slug)
 
+	# check for existing field by slug
 	if existingField
 		result.message = "A field with this slug already exists"
 		return result

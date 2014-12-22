@@ -66,12 +66,14 @@ Meteor.methods
 	result.success = false
 	result.validated = false
 
+	# validate logged in user
 	if !Meteor.userId()
 		result.message = "not-authorized"
 		return result
 		
 	errors = validateCustomer(customer)
 	
+	# validate data
 	if (errors.firstName || errors.lastName || errors.phoneNumber)
 		result.message = "Validation Error"
 		return result
