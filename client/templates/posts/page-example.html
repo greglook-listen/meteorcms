@@ -1,4 +1,4 @@
-<template name="PageType">
+<template name="PageExample">
 	<div class="container">
 		<h3>Posts</h3>
 		{{#each posts}}
@@ -10,8 +10,8 @@
 	
 	{{renderField fields.examplefieldforpage}}
 
-</template>
+	<h4>Content</h4>
 
-<template name="PrettyPageList">
-	<li><a href="/{{url}}">{{type}}</a></li>
+	{{{content}}}
+
 </template>

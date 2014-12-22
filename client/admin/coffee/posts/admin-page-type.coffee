@@ -80,6 +80,7 @@ Template.AdminPageType.events
 		post = {
 			title: form.find('[name="title"]').val()
 			url: form.find('[name="url"]').val()
+			updateUrl: true
 			content: form.find('[name="content"]').val()
 			activated: form.find('[name="activated"]').prop('checked')
 			type: @url
@@ -164,6 +165,7 @@ Template.AdminPageType.events
 		page = {
 			id: @_id
 			type: form.find('[name="type"]').val()
+			content: form.find('[name="content"]').val()
 			url: form.find('[name="url"]').val()
 			activated: form.find('[name="activated"]').prop('checked')
 			updateUrl: form.find('[name="updateUrl"]').prop('checked')
@@ -191,7 +193,7 @@ Template.AdminPageType.events
 
 		errors = validatePage(page)
 		
-		if (errors.type || errors.url)
+		if (errors.type || errors.url || errors.content)
 			Session.set 'pageEditErrors', errors
 
 			return false

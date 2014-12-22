@@ -1,113 +1,70 @@
 Meteor.methods
 	
 	createPost: (post) -> # post = { title, content, type, url, customFields }
-		result = {}
+		
+		# check for existing url
+		url = formatUrl(post.url)
 
-		# validate logged in user
-		if !Meteor.userId()
-			result.success = false
-			result.message = "not-authorized"
-		else
+		result = parsePost(post, url)
 
-			# validate data
-			errors = validatePost(post)
-			
-			if (errors.title || errors.content || errors.type || errors.url)
-				result.success = false
-				result.message = "Validation Error"
-			else
+		if result.validated
+			Posts.insert(
+				{
+					title: post.title
+					content: post.content
+					type: post.type
+					url: url
+					activated: post.activated
+					fields: post.customFields
+					createdAt: new Date()
+					updatedAt: new Date()
+					deletedAt: null
+					author: Meteor.userId()
+				}
+			)
 
-				# check for existing url
-				url = formatUrl(post.url)
-
-				existingPost = Posts.findOne(type: post.type, url: url)
-
-				if existingPost
-					result.success = false
-					result.message = "This url already exists"
-				else
-					Posts.insert(
-						{
-							title: post.title
-							content: post.content
-							type: post.type
-							url: url
-							activated: post.activated
-							fields: post.customFields
-							createdAt: new Date()
-							updatedAt: new Date()
-							deletedAt: null
-							author: Meteor.userId()
-						}
-					)
-
-					result.success = true
-					result.message = "Successfully created post"
+			result.success = true
+			result.message = "Successfully created post"
 
 		return result
 	
 	updatePost: (post) -> # post = { id, title, content, type, url, updateUrl, customFields }
-		result = {}
+		
+		# check for existing url
+		url = formatUrl(post.url)
 
-		# validate logged in user
-		if !Meteor.userId()
-			result.success = false
-			result.message = "not-authorized"
-		else
+		result = parsePost(post, url)
 
-			# validate data
-			errors = validatePost(post)
+		if result.validated
+			serverPost = Posts.findOne(_id: post.id)
 
-			if (errors.title || errors.content || errors.url)
-				result.success = false
-				result.message = "Validation Error"
-			else
+			# add new revision JSON object to revisions property
+			revisions = generatePostRevisions(serverPost)
 
-				# check for existing url
-				url = formatUrl(post.url)
+			data = {
+				title: post.title
+				content: post.content
+				activated: post.activated
+				fields: post.customFields
+				revisions: revisions
+				updatedAt: new Date()
+			}
 
-				existingPost = Posts.findOne(type: post.type, url: url)
+			if post.updateUrl
+				data['url'] = url
 
-				if post.updateUrl && existingPost
-					result.success = false
-					result.message = "This url already exists"
-				else
+			# update post
+			Posts.update(
+				{ 
+					_id: post.id
+				}
+				{
+					$set: data
+				}
+			)
 
-					serverPost = Posts.findOne(_id: post.id)
-
-					# add new revision JSON object to revisions property
-					revisions = generatePostRevisions(serverPost)
-
-					if post.updateUrl
-						data = {
-							title: post.title
-							content: post.content
-							url: url
-							activated: post.activated
-							fields: post.customFields
-							revisions: revisions
-							updatedAt: new Date()
-						}
-					else
-						data = {
-							title: post.title
-							content: post.content
-							activated: post.activated
-							fields: post.customFields
-							revisions: revisions
-							updatedAt: new Date()
-						}
-
-					# update post
-					Posts.update(
-						{ _id: post.id }
-						{
-							$set: data
-						}
-					)
-
-					result.success = true
-					result.message = "Successfully updated post"
+			result.success = true
+			result.message = "Successfully updated post"
 
 		return result
 
@@ -116,6 +73,8 @@ Meteor.methods
 
 	restorePost: (id) ->
 		updateDeletedPost(id, null)
+
+
 
 # this either soft deletes or restores a post depending on what is passed in for deletedAt
 @updateDeletedPost = (id, deletedAt) ->
@@ -139,6 +98,8 @@ Meteor.methods
 			}
 		}
 	)
+
+
 
 # this gets the existing post revisions array and pushes a new revision
 @generatePostRevisions = (serverPost) ->
@@ -164,3 +125,41 @@ Meteor.methods
 	revisions.push(revision: revision)
 
 	revisions
+
+
+
+# this handles all the validation stuff
+
+# validate logged in user
+# validate data
+# check for existing post
+
+@parsePost = (post, url) ->
+	result = {}
+	result.success = false
+	result.validated = false
+
+	# validate logged in user
+	if !Meteor.userId()
+		result.message = "not-authorized"
+		
+		return result
+
+	# validate data
+	errors = validatePost(post)
+	
+	if (errors.title || errors.content || errors.type || errors.url)
+		result.message = "Validation Error"
+		
+		return result
+
+	existingPost = Posts.findOne(type: post.type, url: url)
+
+	if post.updateUrl && existingPost
+		result.message = "This url already exists"
+		
+		return result
+
+	result.validated = true
+
+	return result

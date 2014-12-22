@@ -11,6 +11,8 @@ Template.Customer.events
 				Session.set 'typeOfError', 'failure'
 				throwError 'Unable to delete customer'
 
+		return false
+		
 	'submit .update-customer': (event) ->
 		form = $(event.target)
 

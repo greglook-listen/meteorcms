@@ -1,0 +1,26 @@
+<template name="AdminPostFields">
+	<h4>{{name}}</h4>
+	{{#if string}}
+		<input class="custom-field" data-type="{{type}}" type="text" name="{{slug}}" value="{{value}}" placeholder="{{name}}"/>
+	{{/if}}
+	{{#if number}}
+		<input class="custom-field" data-type="{{type}}" type="number" name="{{slug}}" value="{{value}}" placeholder="{{name}}"/>
+	{{/if}}
+	{{#if textarea}}
+		<textarea class="custom-field" data-type="{{type}}" name="{{slug}}" placeholder="{{name}}">{{value}}</textarea>
+	{{/if}}
+	{{#if repeater}}
+		<div class="repeater-group" data-type="{{type}}" data-name="{{slug}}">
+
+			<div class="repeater-fields">
+				{{#each value}}
+					<div class="repeater-field">
+						<input type="text" value="{{value}}" /><span class="repeater-remove"><i class="glyphicon glyphicon-remove"></i></span>
+					</div>
+				{{/each}}
+			</div>
+
+			<span class="button add-field">Add Field</span>
+		</div>
+	{{/if}}
+</template>

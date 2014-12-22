@@ -1,16 +1,3 @@
-<template name="AdminPostList">
-	<div class="container">
-		<div class="medium-3 column title"><h4>Title</h4></div>
-		<div class="medium-3 column"><h4>Page Type</h4></div>
-		<div class="medium-6 column"><h4>Content</h4></div>
-	</div>
-	<div class="container record">
-		<div class="medium-3 column title"><a href="/admin/page/{{type}}/{{_id}}">{{title}}</a></div>
-		<div class="medium-3 column">{{type}}</div>
-		<div class="medium-6 column">{{content}}</div>
-	</div>
-</template>
-
 <template name="AdminPost">
 	<div class="container">
 		<div class="medium-12 column">
@@ -81,31 +68,4 @@
 			</div>
 		</div>
 	{{/each}}
-</template>
-
-<template name="AdminPostFields">
-	<h4>{{name}}</h4>
-	{{#if string}}
-		<input class="custom-field" data-type="{{type}}" type="text" name="{{slug}}" value="{{value}}" placeholder="{{name}}"/>
-	{{/if}}
-	{{#if number}}
-		<input class="custom-field" data-type="{{type}}" type="number" name="{{slug}}" value="{{value}}" placeholder="{{name}}"/>
-	{{/if}}
-	{{#if textarea}}
-		<textarea class="custom-field" data-type="{{type}}" name="{{slug}}" placeholder="{{name}}">{{value}}</textarea>
-	{{/if}}
-	{{#if repeater}}
-		<div class="repeater-group" data-type="{{type}}" data-name="{{slug}}">
-
-			<div class="repeater-fields">
-				{{#each value}}
-					<div class="repeater-field">
-						<input type="text" value="{{value}}" /><span class="repeater-remove"><i class="glyphicon glyphicon-remove"></i></span>
-					</div>
-				{{/each}}
-			</div>
-
-			<span class="button add-field">Add Field</span>
-		</div>
-	{{/if}}
 </template>

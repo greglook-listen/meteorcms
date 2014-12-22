@@ -1,0 +1,13 @@
+<template name="PageType">
+	<div class="container">
+		<h3>Posts</h3>
+		{{#each posts}}
+			{{> PostList}}
+		{{/each}}
+	</div>
+
+	<h4>Content</h4>
+
+	{{{content}}}
+
+</template>

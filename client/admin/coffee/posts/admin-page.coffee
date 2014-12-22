@@ -17,12 +17,14 @@ Template.AdminPage.events
 		page = {
 			type: form.find('[name="type"]').val()
 			url: form.find('[name="url"]').val()
+			updateUrl: true
+			content: form.find('[name="content"]').val()
 			activated: form.find('[name="activated"]').prop('checked')
 		}
 
 		errors = validatePage(page)
 		
-		if (errors.type || errors.url)
+		if (errors.type || errors.url || errors.content)
 			Session.set 'pageCreationErrors', errors
 
 			return false
@@ -36,7 +38,7 @@ Template.AdminPage.events
 				if result.success
 					Session.set 'typeOfError', 'success'
 
-					$('.new-page input').val('')
+					$('.new-page input, .new-page textarea').val('')
 				else
 					Session.set 'typeOfError', 'failure'
 				

@@ -24,6 +24,7 @@ if Pages.find().count() == 0
 	page = {
 		type: 'Example'
 		url: 'example'
+		content: 'This is the content of the page'
 		activated: true
 		fields: {
 			examplefieldforpage: {

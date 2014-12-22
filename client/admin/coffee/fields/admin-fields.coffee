@@ -33,7 +33,7 @@ Template.AdminFields.events
 
 		errors = validateField(field)
 		
-		if (errors.name || errors.type || errors.pageType || errors.location)
+		if (errors.fieldName || errors.type || errors.pageType || errors.location)
 			Session.set 'errorMessage', errors
 
 			return false

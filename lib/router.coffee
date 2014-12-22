@@ -117,7 +117,15 @@ Router.map ->
 			Meteor.subscribe 'posts'
 		action: ->
 			if @ready()
-				if @data() then @render() else Router.go 'home'
+				if @data()
+					# this is used with the fixture data
+					if @data().url == 'example'
+						@render('PageExample')
+					else
+						@render()
+
+				else
+					Router.go 'home'
 
 	@route 'Post',
 		path: '/:type/:url'
@@ -131,7 +139,7 @@ Router.map ->
 				if @data()
 					# this is used with the fixture data
 					if @data().type == 'example'
-						@render('Example')
+						@render('PostExample')
 					else
 						@render()
 

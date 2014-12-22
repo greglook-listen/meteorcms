@@ -14,3 +14,10 @@ On initial run, this will create fixture data for users, pages, posts, and field
 email: beans@fake.com
 
 password: abcde123
+
+## TODOS
+
+- separate session errors on front end and admin
+- setup user permission levels (developer / admin)
+- setup secure publishing
+- setup customer soft delete

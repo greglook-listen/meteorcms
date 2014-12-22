@@ -6,7 +6,10 @@
 
 	unless page.url.length && Match.test(page.url, String)
 		errors.url = "Url is required"
-		
+	
+	unless page.content.length && Match.test(page.content, String)
+		errors.content = "Content is required"
+				
 	errors
 
 @Pages = new Mongo.Collection "pages"

@@ -2,46 +2,44 @@ Meteor.methods
 	
 	createField: (field) -> # field = { name, type, pageType, location }
 		result = {}
+		result.success = false
 
 		# validate logged in user
 		if !Meteor.userId()
-			result.success = false
 			result.message = "not-authorized"
-		else
+			return result
 
-			# validate data
-			errors = validateField(field)
-			
-			if (errors.name || errors.type || errors.pageType || errors.location)
-				result.success = false
-				result.message = "Validation Error"
-			else
+		# validate data
+		errors = validateField(field)
+		
+		if (errors.name || errors.type || errors.pageType || errors.location)
+			result.message = "Validation Error"
+			return result
 
-				slug = formatSlug(field.name)
+		slug = formatSlug(field.name)
 
-				existingField = Fields.findOne(slug: slug)
+		existingField = Fields.findOne(slug: slug)
 
-				if existingField
-					result.success = false
-					result.message = "A field with this slug already exists"
-				else
+		if existingField
+			result.message = "A field with this slug already exists"
+			return result
 
-					Fields.insert(
-						{
-							name: field.name
-							type: field.type
-							pageType: field.pageType
-							slug: slug
-							location: field.location
-							createdAt: new Date()
-							updatedAt: new Date()
-							deletedAt: null
-							author: Meteor.userId()
-						}
-					)
+		Fields.insert(
+			{
+				name: field.name
+				type: field.type
+				pageType: field.pageType
+				slug: slug
+				location: field.location
+				createdAt: new Date()
+				updatedAt: new Date()
+				deletedAt: null
+				author: Meteor.userId()
+			}
+		)
 
-					result.success = true
-					result.message = "Successfully created field"
+		result.success = true
+		result.message = "Successfully created field"
 
 		return result
 
