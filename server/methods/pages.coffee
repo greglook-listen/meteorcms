@@ -6,7 +6,7 @@ Meteor.methods
 		url = formatUrl(page.url)
 
 		# validate data and other stuff
-		result = parsePage(page, url)
+		result = pageMethods.parsePage(page, url)
 
 		if result.validated
 			Pages.insert(
@@ -34,7 +34,7 @@ Meteor.methods
 		url = formatUrl(page.url)
 
 		# validate data and other stuff
-		result = parsePage(page, url)
+		result = pageMethods.parsePage(page, url)
 
 		if result.validated
 			serverPage = Pages.findOne(_id: page.id)
@@ -54,7 +54,7 @@ Meteor.methods
 			)
 
 			# add new revision JSON object to revisions property
-			revisions = generatePageRevisions(serverPage)
+			revisions = pageMethods.generatePageRevisions(serverPage)
 
 			data = {
 				type: page.type
@@ -82,15 +82,15 @@ Meteor.methods
 		return result
 
 	deletePage: (id) ->
-		updateDeletedPage(id, new Date())
+		pageMethods.updateDeletedPage(id, new Date())
 
 	restorePage: (id) ->
-		updateDeletedPage(id, null)
+		pageMethods.updateDeletedPage(id, null)
 
 
 
 # this either soft deletes or restores a page depending on what is passed in for deletedAt
-@updateDeletedPage = (id, deletedAt) ->
+pageMethods.updateDeletedPage = (id, deletedAt) ->
 	if !Meteor.userId()
 		return {
 			success: false
@@ -111,7 +111,7 @@ Meteor.methods
 		}
 	)
 
-	revisions = generatePageRevisions(serverPage)
+	revisions = pageMethods.generatePageRevisions(serverPage)
 	
 	Pages.update(
 		{ _id: id }
@@ -126,7 +126,7 @@ Meteor.methods
 
 
 # this gets the existing page revisions array and pushes a new revision
-@generatePageRevisions = (serverPage) ->
+pageMethods.generatePageRevisions = (serverPage) ->
 	revision = {
 		type: serverPage.type
 		url: serverPage.url
@@ -158,7 +158,7 @@ Meteor.methods
 # check for existing page
 # check against reserved paths
 
-@parsePage = (page, url) ->
+pageMethods.parsePage = (page, url) ->
 	result = {}
 	result.success = false
 	result.validated = false
@@ -169,7 +169,7 @@ Meteor.methods
 		return result
 
 	# validate data
-	errors = validatePage(page)
+	errors = pages.validatePage(page)
 	
 	if (errors.type || errors.url)
 		result.message = "Validation Error"

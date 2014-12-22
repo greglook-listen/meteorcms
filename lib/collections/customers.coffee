@@ -1,4 +1,8 @@
-@validateCustomer = (customer) ->
+@Customers = new Mongo.Collection "customers"
+
+@customerMethods = {}
+
+customerMethods.validateCustomer = (customer) ->
 	errors = {}
 
 	customer.phoneNumber = customer.phoneNumber.replace(/[^0-9]/, '')
@@ -17,5 +21,3 @@
 		errors.phoneNumber = "Phone Number Taken"
 
 	errors
-
-@Customers = new Mongo.Collection "customers"

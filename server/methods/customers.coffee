@@ -3,7 +3,7 @@ Meteor.methods
 	createCustomer: (customer) -> # customer = { firstName, lastName, phoneNumber }
 		
 		# validate data and other stuff
-		result = parseCustomer(customer)
+		result = customerMethods.parseCustomer(customer)
 
 		if result.validated
 			Customers.insert(
@@ -25,7 +25,7 @@ Meteor.methods
 	updateCustomer: (customer) -> # customer = { id, firstName, lastName, phoneNumber }
 		
 		# validate data and other stuff
-		result = parseCustomer(customer)
+		result = customerMethods.parseCustomer(customer)
 
 		if result.validated
 			Customers.update(
@@ -61,7 +61,7 @@ Meteor.methods
 # validate logged in user
 # validate data
 
-@parseCustomer = (customer) ->
+customerMethods.parseCustomer = (customer) ->
 	result = {}
 	result.success = false
 	result.validated = false
@@ -71,7 +71,7 @@ Meteor.methods
 		result.message = "not-authorized"
 		return result
 		
-	errors = validateCustomer(customer)
+	errors = customerMethods.validateCustomer(customer)
 	
 	# validate data
 	if (errors.firstName || errors.lastName || errors.phoneNumber)

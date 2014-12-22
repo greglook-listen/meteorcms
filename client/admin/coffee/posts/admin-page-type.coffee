@@ -106,7 +106,7 @@ Template.AdminPageType.events
 				value: fields
 			}
 
-		errors = validatePost(post)
+		errors = postMethods.validatePost(post)
 		
 		if (errors.title || errors.content || errors.type || errors.url)
 			Session.set 'postCreationErrors', errors
@@ -191,7 +191,7 @@ Template.AdminPageType.events
 				value: fields
 			}
 
-		errors = validatePage(page)
+		errors = pageMethods.validatePage(page)
 		
 		if (errors.type || errors.url || errors.content)
 			Session.set 'pageEditErrors', errors

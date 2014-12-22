@@ -6,7 +6,7 @@ Meteor.methods
 		slug = formatSlug(field.name)
 
 		# validate data and other stuff
-		result = parseField(field, slug)
+		result = fieldMethods.parseField(field, slug)
 
 		if result.validated
 			Fields.insert(
@@ -45,7 +45,7 @@ Meteor.methods
 # validate data
 # check for existing field
 
-@parseField = (field, slug) ->
+fieldMethods.parseField = (field, slug) ->
 	result = {}
 	result.success = false
 	result.validated = false
@@ -56,7 +56,7 @@ Meteor.methods
 		return result
 
 	# validate data
-	errors = validateField(field)
+	errors = fieldMethods.validateField(field)
 	
 	if (errors.name || errors.type || errors.pageType || errors.location)
 		result.message = "Validation Error"

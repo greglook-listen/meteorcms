@@ -1,4 +1,8 @@
-@validateField = (field) ->
+@Fields = new Mongo.Collection "fields"
+
+@fieldMethods = {}
+
+fieldMethods.validateField = (field) ->
 	errors = {}
 
 	unless field.name.length && Match.test(field.name, String)
@@ -14,5 +18,3 @@
 		errors.location = "Location is required"
 
 	errors
-
-@Fields = new Mongo.Collection "fields"

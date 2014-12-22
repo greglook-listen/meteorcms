@@ -23,7 +23,7 @@ Template.Customer.events
 			phoneNumber: form.find('[name="phoneNumber"]').val()
 		}
 
-		errors = validateCustomer(customer)
+		errors = customerMethods.validateCustomer(customer)
 		
 		if (errors.firstName || errors.lastName || errors.phoneNumber)
 			Session.set 'customerEditErrors', errors

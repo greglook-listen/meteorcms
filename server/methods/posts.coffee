@@ -5,7 +5,7 @@ Meteor.methods
 		# check for existing url
 		url = formatUrl(post.url)
 
-		result = parsePost(post, url)
+		result = postMethods.parsePost(post, url)
 
 		if result.validated
 			Posts.insert(
@@ -33,13 +33,13 @@ Meteor.methods
 		# check for existing url
 		url = formatUrl(post.url)
 
-		result = parsePost(post, url)
+		result = postMethods.parsePost(post, url)
 
 		if result.validated
 			serverPost = Posts.findOne(_id: post.id)
 
 			# add new revision JSON object to revisions property
-			revisions = generatePostRevisions(serverPost)
+			revisions = postMethods.generatePostRevisions(serverPost)
 
 			data = {
 				title: post.title
@@ -69,15 +69,15 @@ Meteor.methods
 		return result
 
 	deletePost: (id) ->
-		updateDeletedPost(id, new Date())
+		postMethods.updateDeletedPost(id, new Date())
 
 	restorePost: (id) ->
-		updateDeletedPost(id, null)
+		postMethods.updateDeletedPost(id, null)
 
 
 
 # this either soft deletes or restores a post depending on what is passed in for deletedAt
-@updateDeletedPost = (id, deletedAt) ->
+postMethods.updateDeletedPost = (id, deletedAt) ->
 	if !Meteor.userId()
 		return {
 			success: false
@@ -102,7 +102,7 @@ Meteor.methods
 
 
 # this gets the existing post revisions array and pushes a new revision
-@generatePostRevisions = (serverPost) ->
+postMethods.generatePostRevisions = (serverPost) ->
 	revision = {
 		title: serverPost.title
 		content: serverPost.content
@@ -134,7 +134,7 @@ Meteor.methods
 # validate data
 # check for existing post
 
-@parsePost = (post, url) ->
+postMethods.parsePost = (post, url) ->
 	result = {}
 	result.success = false
 	result.validated = false
@@ -146,7 +146,7 @@ Meteor.methods
 		return result
 
 	# validate data
-	errors = validatePost(post)
+	errors = postMethods.validatePost(post)
 	
 	if (errors.title || errors.content || errors.type || errors.url)
 		result.message = "Validation Error"

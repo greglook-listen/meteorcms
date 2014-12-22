@@ -1,4 +1,8 @@
-@validatePost = (post) ->
+@Posts = new Mongo.Collection "posts"
+
+@postMethods = {}
+
+postMethods.validatePost = (post) ->
 	errors = {}
 
 	unless post.title.length && Match.test(post.title, String)
@@ -11,5 +15,3 @@
 		errors.url = "Url is required"
 
 	errors
-
-@Posts = new Mongo.Collection "posts"

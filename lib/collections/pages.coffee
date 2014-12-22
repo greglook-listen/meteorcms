@@ -1,4 +1,8 @@
-@validatePage = (page) ->
+@Pages = new Mongo.Collection "pages"
+
+@pageMethods = {}
+
+pageMethods.validatePage = (page) ->
 	errors = {}
 
 	unless page.type.length && Match.test(page.type, String)
@@ -11,5 +15,3 @@
 		errors.content = "Content is required"
 				
 	errors
-
-@Pages = new Mongo.Collection "pages"

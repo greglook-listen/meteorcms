@@ -31,7 +31,7 @@ Template.AdminFields.events
 			location: form.find('[name="location"]').val()
 		}
 
-		errors = validateField(field)
+		errors = fieldMethods.validateField(field)
 		
 		if (errors.fieldName || errors.type || errors.pageType || errors.location)
 			Session.set 'errorMessage', errors

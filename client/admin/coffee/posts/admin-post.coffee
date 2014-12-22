@@ -87,7 +87,7 @@ Template.AdminPost.events
 				value: fields
 			}
 
-		errors = validatePost(post)
+		errors = postMethods.validatePost(post)
 		
 		if (errors.title || errors.content || errors.type || errors.url)
 			Session.set 'postEditErrors', errors

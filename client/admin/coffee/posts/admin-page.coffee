@@ -22,8 +22,8 @@ Template.AdminPage.events
 			activated: form.find('[name="activated"]').prop('checked')
 		}
 
-		errors = validatePage(page)
-		
+		errors = pageMethods.validatePage(page)
+
 		if (errors.type || errors.url || errors.content)
 			Session.set 'pageCreationErrors', errors
 
