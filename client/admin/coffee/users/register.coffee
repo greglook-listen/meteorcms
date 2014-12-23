@@ -21,7 +21,7 @@ Template.Register.events
 				$('#account-email').val('')
 				$('#account-password').val('')
 
-				throwError 'User successfully created'
+				throwError 'You are logged in as ' + Meteor.user().emails[0].address
 		)
 
 		return false

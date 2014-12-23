@@ -70,6 +70,11 @@ Template.AdminFields.events
 
 		return false
 
+	'keyup .new-field [name="fieldName"]': (event) ->
+		value = formatSlug(event.target.value)
+
+		$('.new-field-url').html(value)
+
 	'click .show-field-records': (event) ->
 		$('.show-field-records, .field-creation-records').addClass('active')
 		$('.show-field-creation, .field-creation-form').removeClass('active')

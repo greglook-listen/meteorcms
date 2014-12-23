@@ -21,10 +21,9 @@
 	</div>
 
 	<div class="container record">
-		<div class="medium-2 column">{{_id}}</div>
-		<div class="medium-2 column">{{firstName}}</div>
-		<div class="medium-2 column">{{lastName}}</div>
-		<div class="medium-2 column">{{phoneNumber}}</div>
+		<div class="medium-3 column">{{firstName}}</div>
+		<div class="medium-3 column">{{lastName}}</div>
+		<div class="medium-2 column">{{formatPhone phoneNumber}}</div>
 		<div class="medium-2 column">{{formatTime createdAt}}</div>
 		<div class="medium-2 column">{{formatTime updatedAt}}</div>
 	</div>

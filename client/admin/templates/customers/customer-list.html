@@ -3,12 +3,12 @@
 			<div class="medium-3 column"><h4>First Name</h4></div>
 			<div class="medium-3 column"><h4>Last Name</h4></div>
 			<div class="medium-3 column"><h4>Phone Number</h4></div>
-			<div class="medium-3 column"><h4>Created At</h4></div>
+			<div class="medium-3 column"><h4>Created</h4></div>
 		</div>
 	<div class="container record">
 		<div class="medium-3 column"><a href="/admin/customer/{{_id}}">{{firstName}}</a></div>
 		<div class="medium-3 column">{{lastName}}</div>
-		<div class="medium-3 column">{{phoneNumber}}</div>
+		<div class="medium-3 column">{{formatPhone phoneNumber}}</div>
 		<div class="medium-3 column">{{formatTime createdAt}}</div>
 	</div>
 </template>

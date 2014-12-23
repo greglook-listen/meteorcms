@@ -1,6 +1,7 @@
 Template.Admin.helpers
 	time: new moment().format('MMM D, YYYY')
-
+	currentUserEmail: ->
+		Meteor.user().emails[0].address
 	typeOfError: ->
 		Session.get 'typeOfError'
 
@@ -30,3 +31,7 @@ UI.registerHelper 'truncateContent', (content) ->
 		content + '...'
 	else
 		content
+
+UI.registerHelper 'formatPhone', (phone) ->
+	if phone
+		phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")
