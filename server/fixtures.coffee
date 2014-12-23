@@ -25,9 +25,9 @@ if Users.find().count() == 0
 
 if Pages.find().count() == 0
 	page = {
-		type: 'Example'
+		type: 'This is an example page'
 		url: 'example'
-		content: 'This is the content of the page'
+		content: '<p>Bacon ipsum dolor amet bresaola frankfurter sirloin pork chop cow, corned beef spare ribs filet mignon drumstick brisket t-bone leberkas tail kevin bacon. Tenderloin pork turducken beef rump andouille. Shank sirloin turducken landjaeger filet mignon, picanha rump prosciutto drumstick t-bone fatback pastrami pork loin pork belly. Ribeye tri-tip bacon tenderloin, t-bone kevin landjaeger. Doner venison cow ham hock beef jowl, ham short ribs tail. Corned beef biltong prosciutto, cow ground round doner shank beef filet mignon tail bacon pork chop short ribs kielbasa.</p><p>Porchetta drumstick spare ribs cow tongue corned beef, sausage tail ham hock ground round. Landjaeger turducken pork, porchetta frankfurter corned beef venison biltong brisket pastrami swine. Chuck pancetta filet mignon bacon pork. Tongue bresaola jowl porchetta hamburger andouille fatback. Doner ham ribeye rump salami pig jowl sausage picanha tenderloin andouille cow sirloin. Ribeye tenderloin hamburger boudin ham. Filet mignon andouille biltong meatball spare ribs.</p><p>Chicken turkey pork belly porchetta venison, tail andouille sausage ribeye bresaola. Pork loin bresaola cow, beef pancetta sirloin beef ribs ground round hamburger biltong sausage pastrami rump short ribs. Pork prosciutto picanha cow. Kielbasa short ribs capicola, pancetta brisket strip steak prosciutto beef ribs jerky. Ball tip shankle doner, jerky frankfurter flank chuck rump sirloin short loin venison picanha filet mignon meatloaf. Prosciutto ground round alcatra, tail bresaola tri-tip salami tenderloin pork chop biltong kevin jowl sirloin.</p>'
 		activated: true
 		fields: {
 			examplefieldforpage: {
@@ -94,8 +94,8 @@ if Fields.find().count() == 0
 
 if Posts.find().count() == 0
 	post = {
-		title: 'Example Post'
-		content: 'This is the content of the post'
+		title: 'This is an example post'
+		content: '<p>Bacon ipsum dolor amet bresaola frankfurter sirloin pork chop cow, corned beef spare ribs filet mignon drumstick brisket t-bone leberkas tail kevin bacon. Tenderloin pork turducken beef rump andouille. Shank sirloin turducken landjaeger filet mignon, picanha rump prosciutto drumstick t-bone fatback pastrami pork loin pork belly. Ribeye tri-tip bacon tenderloin, t-bone kevin landjaeger. Doner venison cow ham hock beef jowl, ham short ribs tail. Corned beef biltong prosciutto, cow ground round doner shank beef filet mignon tail bacon pork chop short ribs kielbasa.</p><p>Porchetta drumstick spare ribs cow tongue corned beef, sausage tail ham hock ground round. Landjaeger turducken pork, porchetta frankfurter corned beef venison biltong brisket pastrami swine. Chuck pancetta filet mignon bacon pork. Tongue bresaola jowl porchetta hamburger andouille fatback. Doner ham ribeye rump salami pig jowl sausage picanha tenderloin andouille cow sirloin. Ribeye tenderloin hamburger boudin ham. Filet mignon andouille biltong meatball spare ribs.</p><p>Chicken turkey pork belly porchetta venison, tail andouille sausage ribeye bresaola. Pork loin bresaola cow, beef pancetta sirloin beef ribs ground round hamburger biltong sausage pastrami rump short ribs. Pork prosciutto picanha cow. Kielbasa short ribs capicola, pancetta brisket strip steak prosciutto beef ribs jerky. Ball tip shankle doner, jerky frankfurter flank chuck rump sirloin short loin venison picanha filet mignon meatloaf. Prosciutto ground round alcatra, tail bresaola tri-tip salami tenderloin pork chop biltong kevin jowl sirloin.</p>'
 		type: 'example'
 		url: 'example-post'
 		activated: true

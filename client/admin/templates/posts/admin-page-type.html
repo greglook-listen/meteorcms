@@ -1,98 +1,110 @@
 <template name="AdminPageType">
-	<div class="container">
-		<div class="medium-12 column">
-			<h3>Update Page</h3>
-			<div class="form-box">
-				<form class="update-page">
-					<h4>Page Type</h4>
-					<input type="text" name="type" value="{{type}}" placeholder="Type" />
-						<small class="form-error">{{editMessage 'type'}}</small>
+	<div class="admin-tabs">
+		<ul>
+			<li class="button show-update-page active">Update Page</li>
+			<li class="button show-post-creation pull-right">Create Post</li>
+			<li class="button show-post-records pull-right" style="margin-right: 10px;">Posts</li>
+		</ul>
+	</div>
 
-					<h4>Url</h4>
-					<input type="text" name="url" value="{{url}}" placeholder="URL" />
-						<small class="form-error">{{editMessage 'url'}}</small>
+	<div class="page-update-form active">
+		<div class="container">
+			<div class="medium-12 column">
+				<h3>Update Page</h3>
+				<div class="form-box">
+					<form class="update-page">
+						<h4>Page Type</h4>
+						<input type="text" name="type" value="{{type}}" placeholder="Type" />
+							<small class="form-error">{{editMessage 'type'}}</small>
 
-					<h4>Content</h4>
-					<textarea name="content" placeholder="Content">{{content}}</textarea>
-						<small class="form-error">{{editMessage 'content'}}</small>
+						<h4>Url</h4>
+						<input type="text" name="url" value="{{url}}" placeholder="URL" />
+							<small class="form-error">{{editMessage 'url'}}</small>
 
-					{{#each pageFields}}
-						{{> AdminPostFields}}
-					{{/each}}
+						<h4>Content</h4>
+						<textarea name="content" placeholder="Content">{{content}}</textarea>
+							<small class="form-error">{{editMessage 'content'}}</small>
 
-					<h4>Options</h4>
-					<input type="checkbox" name="updateUrl" /> Update Url
-					<input type="checkbox" name="activated" checked="{{activated}}" /> Active Page
-					
-					<div class="form-buttons">
-						<button type="submit" class="pull-right">Update Page</button>
-						{{#if deletedAt}}
-							<button class="restore">Restore</button>
-						{{else}}
-							<button class="delete">Delete</button>
-						{{/if}}
+						{{#each pageFields}}
+							{{> AdminPostFields}}
+						{{/each}}
+
+						<h4>Options</h4>
+						<input type="checkbox" name="updateUrl" /> Update Url
+						<input type="checkbox" name="activated" checked="{{activated}}" /> Active Page
+						
+						<div class="form-buttons">
+							<button type="submit" class="pull-right">Update Page</button>
+							{{#if deletedAt}}
+								<button class="restore">Restore</button>
+							{{else}}
+								<button class="delete">Delete</button>
+							{{/if}}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="post-create-form">
+		<div class="container">
+			<div class="medium-12 column">
+				<h3>Create New Post</h3>
+				<form class="new-post">
+					<div class="form-box">
+						<h4>Title</h4>
+						<input type="text" name="title" placeholder="Title" />
+							<small class="form-error">{{creationMessage 'title'}}</small>
+
+						<h4>Url</h4>
+						<input type="text" name="url" placeholder="Url" />
+							<small class="form-error">{{creationMessage 'url'}}</small>
+
+						<h4>Content</h4>
+						<textarea name="content" placeholder="Content"></textarea>
+							<small class="form-error">{{creationMessage 'content'}}</small>
+
+						{{#each postFields}}
+							{{> AdminPostFields}}
+						{{/each}}
+
+						<h4>Options</h4>
+
+						<input type="checkbox" name="activated" /> Active Post
+						
+						<div class="form-buttons">
+							<button type="submit" class="pull-right">Create Post</button>
+						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 
-	<hr>
+	<div class="post-create-records">
+		<div class="container">
+			{{#each posts}}
+				{{> AdminPostList}}
+			{{/each}}
+		</div>
 
-	<div class="container">
-		<div class="medium-12 column">
-			<h3>Create New Post</h3>
-			<form class="new-post">
-				<div class="form-box">
-					<h4>Title</h4>
-					<input type="text" name="title" placeholder="Title" />
-						<small class="form-error">{{creationMessage 'title'}}</small>
-
-					<h4>Url</h4>
-					<input type="text" name="url" placeholder="Url" />
-						<small class="form-error">{{creationMessage 'url'}}</small>
-
-					<h4>Content</h4>
-					<textarea name="content" placeholder="Content"></textarea>
-						<small class="form-error">{{creationMessage 'content'}}</small>
-
-					{{#each postFields}}
-						{{> AdminPostFields}}
-					{{/each}}
-
-					<h4>Options</h4>
-
-					<input type="checkbox" name="activated" /> Active Post
-					
-					<div class="form-buttons">
-						<button type="submit" class="pull-right">Create Post</button>
+		{{#if currentUser.profile.developer}}
+			<br><br><br>
+			<div class="container">
+				<div class="medium-12 column">
+					<h3>Page Revisions</h3>
+				</div>
+			</div>
+			
+			{{#each revisions}}
+				<div class="container">
+					<div class="medium-12 column">
+						{{revision}}
 					</div>
 				</div>
-			</form>
-		</div>
+			{{/each}}
+		{{/if}}
 	</div>
-
-	<hr>
-
-	<div class="container">
-		{{#each posts}}
-			{{> AdminPostList}}
-		{{/each}}
-	</div>
-
-	<br><br><br>
-	<div class="container">
-		<div class="medium-12 column">
-			<h3>Page Revisions</h3>
-		</div>
-	</div>
-	
-	{{#each revisions}}
-		<div class="container">
-			<div class="medium-12 column">
-				{{revision}}
-			</div>
-		</div>
-	{{/each}}
 
 </template>

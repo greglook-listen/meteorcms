@@ -6,13 +6,14 @@
 				<a href="/" class="home-icon"><i class="glyphicon glyphicon-home"></i></a>
 				<span class="hide-navigation"><i class="glyphicon glyphicon-arrow-left"></i></span>
 				<ul>
-					{{#if currentUser}}
-						<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+					<li><a href="{{pathFor 'dashboard'}}">Dashboard</a></li>
+					<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
+					{{#if currentUser.profile.developer}}
 						<li><a href="{{pathFor 'admin-fields'}}">Manage Fields</a></li>
-						<li><a href="{{pathFor 'customers'}}">Customers</a></li>
-						<li><a href="{{pathFor 'register'}}">Create User</a></li>
-						<li><a href="#" class="logout">Logout</a></li>
 					{{/if}}
+					<li><a href="{{pathFor 'customers'}}">Customers</a></li>
+					<li><a href="{{pathFor 'register'}}">Create User</a></li>
+					<li><a href="#" class="logout">Logout</a></li>
 				</ul>
 			</div>
 			<div class="main-content">

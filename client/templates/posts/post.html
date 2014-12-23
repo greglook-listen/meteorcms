@@ -1,12 +1,9 @@
 <template name="Post">
-	<ul>
-		<li>{{_id}}</li>
-		<li>{{title}}</li>
-		<li>{{createdAt}}</li>
-		<li>{{updatedAt}}</li>
-		<li>{{author}}</li>
-	</ul>
+	<h4>{{title}}</h4>
+	<h5>{{formatTime createdAt}}</h5>
 
-	{{content}}
+	<h4>Content</h4>
+	
+	{{{content}}}
 
 </template>

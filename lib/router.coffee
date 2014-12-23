@@ -5,6 +5,13 @@ Router.onBeforeAction checkLogin, {
 	except: ['home', 'login', 'page', 'page-type', 'post']
 }
 
+checkDeveloper = () ->
+	if ! Meteor.user().profile.developer then Router.go 'dashboard' else @next()
+
+Router.onBeforeAction checkDeveloper, { 
+	only: ['admin-fields']
+}
+
 Router.configure
 	layoutTemplate: 'Main'
 	loadingTemplate: 'Loading'

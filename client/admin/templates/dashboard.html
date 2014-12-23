@@ -2,7 +2,9 @@
 	<div class="dashboard">
 		<ul>
 			<li><a href="{{pathFor 'admin-page'}}">Manage Pages</a></li>
-			<li><a href="{{pathFor 'admin-fields'}}">Manage Fields</a></li>
+			{{#if currentUser.profile.developer}}
+				<li><a href="{{pathFor 'admin-fields'}}">Manage Fields</a></li>
+			{{/if}}
 			<li><a href="{{pathFor 'customers'}}">Manage Customers</a></li>
 			<li><a href="{{pathFor 'register'}}">Create Accounts</a></li>
 		</ul>

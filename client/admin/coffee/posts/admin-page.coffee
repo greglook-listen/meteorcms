@@ -53,10 +53,13 @@ Template.AdminPage.events
 
 		$('.new-page [name="url"]').val(value)
 
-	'click .toggle-page-create-modal': (event) ->
-		$('.page-creation-form, .page-creation-records').toggleClass('active')
+	'click .show-page-records': (event) ->
+		$('.show-page-records, .page-creation-records').addClass('active')
+		$('.show-page-creation, .page-creation-form').removeClass('active')
 
-		return false
+	'click .show-page-creation': (event) ->
+		$('.show-page-creation, .page-creation-form').addClass('active')
+		$('.show-page-records, .page-creation-records').removeClass('active')
 
 Template.AdminPage.created = () ->
 	Session.set('pageCreationErrors', {})

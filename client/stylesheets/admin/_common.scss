@@ -113,7 +113,13 @@
 		border-bottom: 1px solid $lightestgrey;
 	}
 
-	.page-creation-form {
+	.page-creation-form,
+	.page-creation-records,
+	.page-update-form,
+	.post-create-form,
+	.post-create-records,
+	.field-creation-form,
+	.field-creation-records {
 		display: none;
 
 		&.active {
@@ -121,11 +127,24 @@
 		}
 	}
 
-	.page-creation-records {
-		display: block;
+	.admin-tabs {
+		@extend .container;
 
-		&.active {
-			display: none;
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		.button {
+			background: $white;
+			color: $black;
+			border: 2px solid $black;
+
+			&.active {
+				background: $black;
+				color: $white;
+				border: 2px solid $black;
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <template name="Users">
 	<div class="container">
 		<div class="medium-4 column"><h4>Email</h4></div>
-		<div class="medium-4 column"><h4>Created At</h4></div>
+		<div class="medium-4 column"><h4>Created</h4></div>
 		<div class="medium-4 column"><h4>Role</h4></div>
 	</div>
 	{{#each users}}
@@ -16,7 +16,7 @@
 				{{address}}
 			{{/each}}
 		</div>
-		<div class="medium-4 column">{{created}}</div>
+		<div class="medium-4 column">{{formatTime created}}</div>
 		<div class="medium-4 column">{{role}}</div>
 	</div>
 

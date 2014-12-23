@@ -70,5 +70,13 @@ Template.AdminFields.events
 
 		return false
 
+	'click .show-field-records': (event) ->
+		$('.show-field-records, .field-creation-records').addClass('active')
+		$('.show-field-creation, .field-creation-form').removeClass('active')
+
+	'click .show-field-creation': (event) ->
+		$('.show-field-creation, .field-creation-form').addClass('active')
+		$('.show-field-records, .field-creation-records').removeClass('active')
+
 Template.AdminFields.created = () ->
 	Session.set('errorMessage', {})

@@ -19,3 +19,14 @@ Template.Admin.events
 
 	'click .left-navigation ul li a': ->
 		$('.left-navigation, .main-content').removeClass('active')
+
+
+UI.registerHelper 'formatTime', (time) ->
+	moment(time).format('MMM, D, YYYY')
+
+UI.registerHelper 'truncateContent', (content) ->
+	if content.length > 100
+		content = content.substr(0, 100)
+		content + '...'
+	else
+		content

@@ -215,6 +215,19 @@ Template.AdminPageType.events
 
 		return false
 
+	'click .show-update-page': (event) ->
+		$('.show-update-page, .page-update-form').addClass('active')
+		$('.show-post-records, .post-create-records, .show-post-creation, .post-create-form').removeClass('active')
+
+	'click .show-post-records': (event) ->
+		$('.show-post-records, .post-create-records').addClass('active')
+		$('.show-update-page, .page-update-form, .show-post-creation, .post-create-form').removeClass('active')
+
+	'click .show-post-creation': (event) ->
+		$('.show-post-creation, .post-create-form').addClass('active')
+		$('.show-post-records, .post-create-records, .show-update-page, .page-update-form').removeClass('active')
+
+
 Template.AdminPageType.created = () ->
 	Session.set('postCreationErrors', {})
 	Session.set('pageEditErrors', {})

@@ -1,17 +1,18 @@
 <template name="PageExample">
+	<h3>{{type}}</h3>
+	<h4>{{formatTime createdAt}}</h4>
+
+	{{{content}}}
+
+	<h4>This is the example field for page custom field example</h4>
+	
+	{{renderField fields.examplefieldforpage}}
+	
 	<div class="container">
 		<h3>Posts</h3>
 		{{#each posts}}
 			{{> PostList}}
 		{{/each}}
 	</div>
-
-	<h4>This is the example field for page custom field example</h4>
-	
-	{{renderField fields.examplefieldforpage}}
-
-	<h4>Content</h4>
-
-	{{{content}}}
 
 </template>

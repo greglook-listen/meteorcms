@@ -1,12 +1,14 @@
 <template name="AdminPage">
+	<div class="admin-tabs">
+		<ul>
+			<li class="button show-page-records active">Pages</li>
+			<li class="button show-page-creation pull-right">Create Page</li>
+		</ul>
+	</div>
+
 	<div class="page-creation-form">
 		<div class="container">
 			<div class="medium-12 column">
-				<div class="clearfix">
-					<h3 class="pull-left">Create Page</h3>
-					<button class=" pull-right toggle-page-create-modal"><i class="glyphicon glyphicon-arrow-left"></i></button>
-				</div>
-
 				<form class="new-page">
 					<div class="form-box">
 						<h4>Title</h4>
@@ -33,16 +35,7 @@
 		</div>
 	</div>
 
-	<div class="page-creation-records">
-		<div class="container">
-			<div class="medium-12 column">
-				<div class="clearfix">
-					<h3 class="pull-left">Pages</h3>
-					<button class=" pull-right toggle-page-create-modal">Create Page</button>
-				</div>
-			</div>
-		</div>
-
+	<div class="page-creation-records active">
 		<div class="container">
 			<div class="medium-4 column title"><h4>Page Type</h4></div>
 			<div class="medium-4 column"><h4>Url</h4></div>

@@ -26,13 +26,13 @@
 	
 	<div class="container">
 		<div class="medium-3 column">{{title}}</div>
-		<div class="medium-3 column">{{createdAt}}</div>
-		<div class="medium-3 column">{{updatedAt}}</div>
+		<div class="medium-3 column">{{formatTime createdAt}}</div>
+		<div class="medium-3 column">{{formatTime updatedAt}}</div>
 		<div class="medium-3 column">{{author}}</div>
 	</div>
 
 	<h3>Post Content</h3>
 	
-	{{content}}
+	{{{content}}}
 	
 </template>
