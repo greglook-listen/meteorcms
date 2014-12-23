@@ -1,7 +1,11 @@
 <template name="AdminPost">
 	<div class="container">
 		<div class="medium-12 column">
-			<h3>Update Post</h3>
+			<div class="clearfix">
+				<h3 class="pull-left">Update Post</h3>
+				<a href="/{{type}}/{{url}}" class="button pull-right toggle-page-create-modal">View Post</a>
+			</div>
+
 			<div class="form-box">
 				<form class="update-post">
 					<h4>Title</h4>
@@ -39,33 +43,21 @@
 		</div>
 	</div>
 
-	<hr>
+	{{#if currentUser.profile.developer}}
+		<hr>
 
-	<div class="container">
-		<div class="medium-3 column title"><h4>Title</h4></div>
-		<div class="medium-3 column"><h4>Content</h4></div>
-		<div class="medium-3 column"><h4>Page Type</h4></div>
-		<div class="medium-3 column"><h4>Url</h4></div>
-	</div>
-	<div class="container record">
-		<div class="medium-3 column title">{{title}}</div>
-		<div class="medium-3 column">{{content}}</div>
-		<div class="medium-3 column">{{type}}</div>
-		<div class="medium-3 column">{{url}}</div>
-	</div>
-
-	<br><br><br>
-	<div class="container">
-		<div class="medium-12 column">
-			<h3>Revisions</h3>
-		</div>
-	</div>
-	
-	{{#each revisions}}
 		<div class="container">
 			<div class="medium-12 column">
-				{{revision}}
+				<h3>Revisions</h3>
 			</div>
 		</div>
-	{{/each}}
+		
+		{{#each revisions}}
+			<div class="container">
+				<div class="medium-12 column">
+					{{revision}}
+				</div>
+			</div>
+		{{/each}}
+	{{/if}}
 </template>

@@ -87,7 +87,7 @@ postMethods.updateDeletedPost = (id, deletedAt) ->
 	serverPost = Posts.findOne(_id: id)
 
 	# add new revision JSON object to revisions property
-	revisions = generatePostRevisions(serverPost)
+	revisions = postMethods.generatePostRevisions(serverPost)
 
 	Posts.update(
 		{ _id: id }
@@ -102,23 +102,23 @@ postMethods.updateDeletedPost = (id, deletedAt) ->
 
 
 # this gets the existing post revisions array and pushes a new revision
-postMethods.generatePostRevisions = (serverPost) ->
+postMethods.generatePostRevisions = (p) ->
 	revision = {
-		title: serverPost.title
-		content: serverPost.content
-		type: serverPost.type
-		url: serverPost.url
-		fields: serverPost.fields
-		createdAt: serverPost.createdAt
-		updatedAt: serverPost.updatedAt
-		deletedAt: serverPost.deletedAt
-		author: serverPost.author
+		title: p.title
+		content: p.content
+		type: p.type
+		url: p.url
+		fields: p.fields
+		createdAt: p.createdAt
+		updatedAt: p.updatedAt
+		deletedAt: p.deletedAt
+		author: p.author
 	}
 
 	revisions = []
 
-	if serverPost.revisions
-		revisions = serverPost.revisions
+	if p.revisions
+		revisions = p.revisions
 
 	revision = JSON.stringify(revision)
 

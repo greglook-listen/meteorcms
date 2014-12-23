@@ -14,11 +14,14 @@ if Users.find().count() == 0
 	user = {
 		email: 'beans@fake.com'
 		password: 'abcde123'
+		profile: {
+			developer: true
+		}
 	}
 
-	console.log "User created: ", user
-
 	Accounts.createUser(user)
+
+	console.log "User created: ", user
 
 if Pages.find().count() == 0
 	page = {

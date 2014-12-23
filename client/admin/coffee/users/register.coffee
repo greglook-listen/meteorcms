@@ -6,6 +6,9 @@ Template.Register.events
 		user = {
 			email: $('#account-email').val()
 			password: $('#account-password').val()
+			profile: {
+				admin: true
+			}
 		}
 
 		Accounts.createUser(user, (error) ->

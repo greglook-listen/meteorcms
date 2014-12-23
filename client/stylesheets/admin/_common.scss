@@ -1,5 +1,9 @@
 .admin {
 
+	h3, h4 {
+		text-transform: uppercase;
+	}
+	
 	.main-container {
 		overflow: hidden;
 	}
@@ -107,5 +111,21 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		border-bottom: 1px solid $lightestgrey;
+	}
+
+	.page-creation-form {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	.page-creation-records {
+		display: block;
+
+		&.active {
+			display: none;
+		}
 	}
 }

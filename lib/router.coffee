@@ -11,6 +11,7 @@ Router.configure
 	notFoundTemplate: 'NotFound'
 	waitOn: ->
 		Meteor.subscribe 'pages'
+		Meteor.subscribe 'posts'
 
 Router.map ->
 

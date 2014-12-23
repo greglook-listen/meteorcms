@@ -1,40 +1,57 @@
 <template name="AdminPage">
-	<div class="container">
-		<div class="medium-12 column">
-			<h3>Create Page</h3>
-			<form class="new-page">
-				<div class="form-box">
-					<h4>Type</h4>
-					<input type="text" name="type" placeholder="Type" />
-						<small class="form-error">{{errorMessage 'type'}}</small>
-
-					<h4>Url</h4>
-					<input type="text" name="url" placeholder="URL" />
-						<small class="form-error">{{errorMessage 'url'}}</small>
-					
-					<h4>Content</h4>
-					<textarea name="content" placeholder="Content">{{content}}</textarea>
-						<small class="form-error">{{errorMessage 'content'}}</small>
-
-					<input type="checkbox" name="activated" /> Active Page
-					
-					<div class="form-buttons">
-						<button type="submit" class="pull-right">Create Page</button>
-					</div>
+	<div class="page-creation-form">
+		<div class="container">
+			<div class="medium-12 column">
+				<div class="clearfix">
+					<h3 class="pull-left">Create Page</h3>
+					<button class=" pull-right toggle-page-create-modal"><i class="glyphicon glyphicon-arrow-left"></i></button>
 				</div>
-			</form>
+
+				<form class="new-page">
+					<div class="form-box">
+						<h4>Title</h4>
+						<input type="text" name="type" placeholder="Type" />
+							<small class="form-error">{{errorMessage 'type'}}</small>
+
+						<h4>Url</h4>
+						<input type="text" name="url" placeholder="URL" />
+							<small class="form-error">{{errorMessage 'url'}}</small>
+						
+						<h4>Content</h4>
+						<textarea name="content" placeholder="Content">{{content}}</textarea>
+							<small class="form-error">{{errorMessage 'content'}}</small>
+
+						<h4>Options</h4>
+						<input type="checkbox" name="activated" /> Active Page
+						
+						<div class="form-buttons">
+							<button type="submit" class="pull-right">Create Page</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 
-	<hr>
+	<div class="page-creation-records">
+		<div class="container">
+			<div class="medium-12 column">
+				<div class="clearfix">
+					<h3 class="pull-left">Pages</h3>
+					<button class=" pull-right toggle-page-create-modal">Create Page</button>
+				</div>
+			</div>
+		</div>
 
-	<div class="container">
-		<div class="medium-6 column title"><h4>Page Type</h4></div>
-		<div class="medium-6 column"><h4>Url</h4></div>
-	</div>
-	<div class="container">
-		{{#each pages}}
-			{{> AdminPageList}}
-		{{/each}}
+		<div class="container">
+			<div class="medium-4 column title"><h4>Page Type</h4></div>
+			<div class="medium-4 column"><h4>Url</h4></div>
+			<div class="medium-4 column"><h4>Posts</h4></div>
+		</div>
+		<div class="container">
+			{{#each pages}}
+				{{> AdminPageList}}
+			{{/each}}
+		</div>
 	</div>
 </template>

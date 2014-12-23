@@ -126,22 +126,22 @@ pageMethods.updateDeletedPage = (id, deletedAt) ->
 
 
 # this gets the existing page revisions array and pushes a new revision
-pageMethods.generatePageRevisions = (serverPage) ->
+pageMethods.generatePageRevisions = (p) ->
 	revision = {
-		type: serverPage.type
-		url: serverPage.url
-		content: serverPage.content
-		fields: serverPage.fields
-		createdAt: serverPage.createdAt
-		updatedAt: serverPage.updatedAt
-		deletedAt: serverPage.deletedAt
-		author: serverPage.author
+		type: p.type
+		url: p.url
+		content: p.content
+		fields: p.fields
+		createdAt: p.createdAt
+		updatedAt: p.updatedAt
+		deletedAt: p.deletedAt
+		author: p.author
 	}
 
 	revisions = []
 
-	if serverPage.revisions
-		revisions = serverPage.revisions
+	if p.revisions
+		revisions = p.revisions
 
 	revision = JSON.stringify(revision)
 
@@ -169,7 +169,7 @@ pageMethods.parsePage = (page, url) ->
 		return result
 
 	# validate data
-	errors = pages.validatePage(page)
+	errors = pageMethods.validatePage(page)
 	
 	if (errors.type || errors.url)
 		result.message = "Validation Error"

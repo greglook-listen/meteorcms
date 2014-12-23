@@ -1,22 +1,24 @@
 Meteor.publish 'customers', ->
-	Customers.find(
-		{
+	if @userId
+		Customers.find(
+			{
 
-		}
-		{
-			sort: { createdAt: -1 }
-		}
-	)
+			}
+			{
+				sort: { createdAt: -1 }
+			}
+		)
 
 Meteor.publish 'users', ->
-	Users.find(
-		{
+	if @userId
+		Users.find(
+			{
 
-		}
-		{
-			sort: { createdAt: -1 }
-		}
-	)
+			}
+			{
+				sort: { createdAt: -1 }
+			}
+		)
 
 Meteor.publish 'posts', ->
 	Posts.find(
