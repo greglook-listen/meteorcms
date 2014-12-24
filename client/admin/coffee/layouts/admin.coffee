@@ -1,7 +1,8 @@
 Template.Admin.helpers
 	time: new moment().format('MMM D, YYYY')
 	currentUserEmail: ->
-		Meteor.user().emails[0].address
+		if Meteor.user()
+			Meteor.user().emails[0].address
 	typeOfError: ->
 		Session.get 'typeOfError'
 

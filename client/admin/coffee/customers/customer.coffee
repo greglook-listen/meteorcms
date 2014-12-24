@@ -12,7 +12,7 @@ Template.Customer.events
 				throwError 'Unable to delete customer'
 
 		return false
-		
+	
 	'submit .update-customer': (event) ->
 		form = $(event.target)
 

@@ -94,17 +94,21 @@ Template.AdminPageType.events
 			}
 
 		form.find('.repeater-group').each ->
-			console.log $(this).find('.repeater-field')
-
 			fields = []
 
 			$(this).find('.repeater-field input').each ->
-				fields.push { value: $(this).val() }
+				value = $(this).val()
 
-			post.customFields[$(this).data('name')] = {
-				type: $(this).data('type')
-				value: fields
-			}
+				if value 
+					fields.push { value: value }
+
+			if fields.length
+				post.customFields[$(this).data('name')] = {
+					type: $(this).data('type')
+					value: fields
+				}
+
+		console.log post
 
 		errors = postMethods.validatePost(post)
 		
@@ -123,6 +127,7 @@ Template.AdminPageType.events
 					Session.set 'typeOfError', 'success'
 
 					$('.new-post input, .new-post textarea').val('')
+					$('.new-post .repeater-field').remove()
 				else
 					Session.set 'typeOfError', 'failure'
 
@@ -179,17 +184,19 @@ Template.AdminPageType.events
 			}
 
 		form.find('.repeater-group').each ->
-			console.log $(this).find('.repeater-field')
-
 			fields = []
 
 			$(this).find('.repeater-field input').each ->
-				fields.push { value: $(this).val() }
+				value = $(this).val()
 
-			page.customFields[$(this).data('name')] = {
-				type: $(this).data('type')
-				value: fields
-			}
+				if value 
+					fields.push { value: value }
+
+			if fields.length
+				page.customFields[$(this).data('name')] = {
+					type: $(this).data('type')
+					value: fields
+				}
 
 		errors = pageMethods.validatePage(page)
 		
@@ -206,6 +213,8 @@ Template.AdminPageType.events
 			else
 				if result.success
 					Session.set 'typeOfError', 'success'
+
+					$('.update-page').find('.appended').remove()
 				else
 					Session.set 'typeOfError', 'failure'
 

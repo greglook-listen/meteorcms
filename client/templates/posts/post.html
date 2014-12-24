@@ -1,4 +1,8 @@
 <template name="Post">
+	{{#unless activated}}
+		<div class="preview-message">This post is not active</div>
+	{{/unless}}
+
 	<h4>{{title}}</h4>
 	<h5>{{formatTime createdAt}}</h5>
 

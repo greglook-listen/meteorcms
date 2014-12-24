@@ -1,3 +1,11 @@
 <template name="Home">
+	<h3>{{type}}</h3>
+	<h5>{{formatTime createdAt}}</h5>
+
+	<h4>Content</h4>
 	
+	{{{content}}}
+
+	<h4>This is a sample custom field</h4>
+	{{renderField fields.examplefieldforhome}}
 </template>

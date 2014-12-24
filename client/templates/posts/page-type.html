@@ -1,4 +1,8 @@
 <template name="PageType">
+	{{#unless activated}}
+		<div class="preview-message">This page is not active</div>
+	{{/unless}}
+
 	<h3>{{type}}</h3>
 	<h4>{{formatTime createdAt}}</h4>
 

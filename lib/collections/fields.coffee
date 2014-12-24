@@ -17,4 +17,7 @@ fieldMethods.validateField = (field) ->
 	unless field.location.length && Match.test(field.location, String)
 		errors.location = "Location is required"
 
+	if field.pageType == "home" && field.location == "post"
+		errors.location = "Home page cannot have post fields"
+
 	errors

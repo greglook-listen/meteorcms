@@ -129,6 +129,8 @@
 
 	.admin-tabs {
 		@extend .container;
+		padding-left: 0.9375rem;
+  		padding-right: 0.9375rem;
 
 		ul {
 			margin: 0;

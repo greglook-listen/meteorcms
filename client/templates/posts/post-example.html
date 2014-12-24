@@ -1,4 +1,8 @@
 <template name="PostExample">
+	{{#unless activated}}
+		<div class="preview-message">This post is not active</div>
+	{{/unless}}
+
 	<h3>This is an example template</h3>
 
 	<p>This template is located at templates/posts/posts.html</p>

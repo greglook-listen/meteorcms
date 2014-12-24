@@ -10,20 +10,7 @@
 
 # Delete this file or it will create the fixture data again
 
-if Users.find().count() == 0
-	user = {
-		email: 'beans@fake.com'
-		password: 'abcde123'
-		profile: {
-			developer: true
-		}
-	}
-
-	Accounts.createUser(user)
-
-	console.log "User created: ", user
-
-if Pages.find().count() == 0
+if Pages.find().count() == 1
 	page = {
 		type: 'This is an example page'
 		url: 'example'
@@ -46,6 +33,20 @@ if Pages.find().count() == 0
 	console.log "Page example created: ", page.type
 
 if Fields.find().count() == 0
+	homeString = {
+		name: 'Example Field For Home'
+		type: 'String'
+		pageType: 'home'
+		slug: 'examplefieldforhome'
+		location: 'page'
+		createdAt: new Date()
+		updatedAt: new Date()
+		deletedAt: null
+		author: null
+	}
+
+	Fields.insert(homeString)
+
 	string = {
 		name: 'Example Field'
 		type: 'String'

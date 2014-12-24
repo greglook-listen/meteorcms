@@ -9,6 +9,7 @@ Template.Main.helpers
 			{
 				activated: true
 				deletedAt: null
+				home: { $ne: true }
 			}
 			{
 				sort: { createdAt: -1 }

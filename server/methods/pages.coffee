@@ -1,6 +1,6 @@
 Meteor.methods
 	
-	createPage: (page) -> # page = { type, url, updateUrl }
+	createPage: (page) -> # page = { type, url, updateUrl, fields }
 		
 		# format url
 		url = formatUrl(page.url)

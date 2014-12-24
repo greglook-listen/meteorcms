@@ -81,13 +81,18 @@ Template.AdminPost.events
 			fields = []
 
 			$(this).find('.repeater-field input').each ->
-				fields.push { value: $(this).val() }
+				value = $(this).val()
 
-			post.customFields[$(this).data('name')] = {
-				type: $(this).data('type')
-				value: fields
-			}
+				if value 
+					fields.push { value: value }
 
+			if fields.length
+				post.customFields[$(this).data('name')] = {
+					type: $(this).data('type')
+					value: fields
+				}
+
+		console.log post
 		errors = postMethods.validatePost(post)
 		
 		if (errors.title || errors.content || errors.type || errors.url)

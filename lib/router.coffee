@@ -27,6 +27,13 @@ Router.map ->
 	@route 'Home',
 		path: '/'
 		name: 'home'
+		data: ->
+			data = Pages.findOne(home: true)
+		waitOn: ->
+			Meteor.subscribe 'pages'
+		action: ->
+			if @ready()
+				if @data() then @render() else Router.go 'NotFound'
 
 	@route 'Login',
 		path: '/login'
@@ -119,7 +126,10 @@ Router.map ->
 		path: '/:url'
 		name: 'page-type'
 		data: ->
-			data = Pages.findOne(url: @params.url)
+			if Meteor.userId()
+				Pages.findOne(url: @params.url)
+			else
+				Pages.findOne(url: @params.url, activated: true)
 		waitOn: ->
 			Meteor.subscribe 'pages'
 			Meteor.subscribe 'posts'
@@ -139,7 +149,10 @@ Router.map ->
 		path: '/:type/:url'
 		name: 'post'
 		data: ->
-			Posts.findOne(type: @params.type, url: @params.url)
+			if Meteor.userId()
+				Posts.findOne(type: @params.type, url: @params.url)
+			else
+				Posts.findOne(type: @params.type, url: @params.url, activated: true)
 		waitOn: ->
 			Meteor.subscribe 'posts'
 		action: ->
