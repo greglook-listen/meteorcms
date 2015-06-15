@@ -96,7 +96,7 @@ Template.AdminPageType.events
 		form.find('.repeater-group').each ->
 			fields = []
 
-			$(this).find('.repeater-field input').each ->
+			$(this).find('.repeater-field textarea').each ->
 				value = $(this).val()
 
 				if value 
@@ -186,7 +186,7 @@ Template.AdminPageType.events
 		form.find('.repeater-group').each ->
 			fields = []
 
-			$(this).find('.repeater-field input').each ->
+			$(this).find('.repeater-field textarea').each ->
 				value = $(this).val()
 
 				if value 

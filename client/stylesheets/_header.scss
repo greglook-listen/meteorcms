@@ -19,8 +19,6 @@
 					width: 25%;
 
 					a {
-						display: block;
-						padding: 18px 8px;
 						cursor: pointer;
 						font-weight: 600;
 						color: $white;
@@ -28,6 +26,11 @@
 						&:hover {
 							text-decoration: none;
 						}
+					}
+
+					a:not(.first-level) {
+						display: block;
+						padding: 18px 8px;
 					}
 
 					&.has-children {

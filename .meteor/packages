@@ -20,3 +20,4 @@ accounts-password
 # Part of WebApp, needed for rendering correctly to search engines
 # https://atmospherejs.com/meteor/spiderable
 # spiderable
+reactive-var

@@ -4,11 +4,10 @@
 			<nav>
 				<ul>
 					<li class="has-children">
-						Pages
+						<a href="/services" class="first-level">Services</a>
 						<ul>
-							<li><a href="/">Home</a></li>
-							{{#each pages}}
-								{{> PrettyPageList}}
+							{{#each posts}}
+								{{> PrettyPostList}}
 							{{/each}}
 						</ul>
 					</li>

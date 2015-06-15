@@ -37,3 +37,7 @@ password: abcde123
 - setup secure publishing
 - setup customer soft delete
 - add hard delete
+- html repeater
+- hide /home
+- change field slugs
+- allow field slugs to be duplicate if page not same

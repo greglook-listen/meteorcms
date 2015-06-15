@@ -39,6 +39,10 @@ Router.map ->
 		path: '/login'
 		name: 'login'
 
+	@route 'Contact',
+		path: '/contact-us'
+		name: 'contact'
+
 # ---- ADMIN ROUTES ---- #
 	
 	@route 'Dashboard',
@@ -137,8 +141,8 @@ Router.map ->
 			if @ready()
 				if @data()
 					# this is used with the fixture data
-					if @data().url == 'example'
-						@render('PageExample')
+					if @data().url == 'services'
+						@render('PageServices')
 					else
 						@render()
 

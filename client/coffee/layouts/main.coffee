@@ -4,12 +4,12 @@ Template.Main.helpers
 	typeOfError: ->
 		Session.get 'typeOfError'
 		
-	pages: ->
-		Pages.find(
+	posts: ->
+		Posts.find(
 			{
 				activated: true
 				deletedAt: null
-				home: { $ne: true }
+				type: 'services'
 			}
 			{
 				sort: { createdAt: -1 }
